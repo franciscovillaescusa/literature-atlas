@@ -60,3 +60,21 @@ def test_tex():
 def test_safe_url():
     cases = ["https://arxiv.org/abs/1", "HTTP://x.org", "javascript:alert(1)", " javascript:x", "data:text/html,x", "", None, "/relative"]
     assert run_js([["safeUrl", c] for c in cases]) == ["https://arxiv.org/abs/1", "HTTP://x.org", "", "", "", "", "", ""]
+
+
+def run_keep_on_screen(cases):
+    src = open(os.path.join(ROOT, "atlas.js"), encoding="utf-8").read()
+    k = src.index("const keepOnScreen")
+    script = src[k:src.index("\n", k)] + "\n" + \
+        f"console.log(JSON.stringify({json.dumps(cases)}.map(([x, w, W]) => keepOnScreen(x, w, W))));"
+    return json.loads(subprocess.run([NODE, "-e", script], capture_output=True, text=True, check=True).stdout)
+
+
+def test_topic_label_kept_on_screen():
+    # a 300px-wide name centred 40px from the left of a 660px map (e.g. the atlas embedded in the docs) used to
+    # be cut off: it must be moved so it starts inside the canvas; likewise at the right edge
+    W = 660
+    left, right, middle, panned = run_keep_on_screen([[40, 300, W], [640, 300, W], [330, 300, W], [-50, 300, W]])
+    assert left - 150 >= 0 and right + 150 <= W
+    assert middle == 330          # names that already fit are not moved
+    assert panned == -50          # an island panned off screen keeps its place

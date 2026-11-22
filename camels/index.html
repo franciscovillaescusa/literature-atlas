@@ -785,6 +785,9 @@ function fit(animate, all) {   // all: frame every dot (fit button); otherwise t
   const k = done(Math.min((W - 180) / (x1 - x0 || 1), (H - 90) / (y1 - y0 || 1)));   // margins leave room for labels
   animateTo(k, W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2, animate && !reduce0 ? 450 : 0);
 }
+// x of a centred label of width w so the whole name stays on a canvas W wide; an anchor that is already off
+// screen (an island panned away) is left alone, so its name does not pile up at the edge
+const keepOnScreen = (x, w, W) => (x < 0 || x > W) ? x : Math.min(W - 6 - w / 2, Math.max(6 + w / 2, x));
 const draw = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); };
 
 // which nodes/edges are emphasised by the current selection or hover
@@ -949,7 +952,7 @@ function render() {
   const label = (txt, x, y, font, align, tries, force, pill, inside) => {
     ctx.font = font; ctx.textAlign = align || 'center';
     const w = ctx.measureText(txt).width, h = 15;
-    if (inside && align !== 'left') x = Math.min(W - 6 - w / 2, Math.max(6 + w / 2, x));   // keep the whole name on screen
+    if (inside && align !== 'left') x = keepOnScreen(x, w, W);   // keep the whole name on screen
     for (const dy of tries || [0]) {
       const x0 = align === 'left' ? x : x - w / 2, b = { x0: x0 - 3, x1: x0 + w + 3, y0: y + dy - h / 2, y1: y + dy + h / 2 };
       if (!force && hits(b)) continue;
@@ -967,7 +970,7 @@ function render() {
     const regionStyle = !lay.is3d && S.colorBy === 'topic';   // atlas islands: names styled like map regions
     if (regionStyle) ctx.letterSpacing = '0.06em';
     labels.forEach(l => { if (S.on.has(l.k) && !(W < 600 && (T.applyX(l.x) < 0 || T.applyX(l.x) > W))) label(regionStyle ? l.name.toUpperCase() : l.name, T.applyX(l.x), T.applyY(l.y) - 24,
-      (regionStyle ? '700 11px ' : '600 13px ') + fB, 'center', [0, -16, 16, -32, 32, -48, 48, -64, 64], false, false, W < 600); });
+      (regionStyle ? '700 11px ' : '600 13px ') + fB, 'center', [0, -16, 16, -32, 32, -48, 48, -64, 64], false, false, true); });
     ctx.letterSpacing = '0px';
   }
   if (S.view === 'coauthors') {
