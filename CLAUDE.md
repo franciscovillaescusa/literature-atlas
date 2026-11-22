@@ -1,6 +1,6 @@
 # Literature Atlases — notes for Claude
 
-One codebase builds an atlas per project (currently `camels` and `quijote`). Each project has
+One codebase builds an atlas per project (currently `camels`, `quijote` and `fvillaescusa`, a person's publications from an arXiv author search: see the optional settings in the `Project` docstring of `build_atlas.py`). Each project has
 `projects/<name>/` (`config.json`, `tags.json`, `overrides.json`, `positions.json`) and a generated site
 `<name>/index.html` (plus `<name>/preview.png`), built by `build_atlas.py --project <name>` from `atlas.html`,
 `atlas.css`, `atlas.js` and the data files. Never edit `<name>/index.html` by hand. The root `index.html` is the

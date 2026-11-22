@@ -135,7 +135,9 @@ def main():
         # self-citation switch: the number of links drawn drops to the independent count
         page.click("#m-citations"); page.wait_for_timeout(300)
         n_all = sum(len(p["r"]) for p in papers)
-        n_ind = sum(1 for i, p in enumerate(papers) for j in p["r"] if not set(p["au"]) & set(papers[j]["au"]))
+        # in a person's atlas the owner (an author of every paper) does not make a citation a self-citation
+        owner = {data["authors"].index(data["proj"]["owner"])} if data["proj"].get("owner") in data["authors"] else set()
+        n_ind = sum(1 for i, p in enumerate(papers) for j in p["r"] if not (set(p["au"]) & set(papers[j]["au"])) - owner)
         page.click("#dispbtn"); page.click("#selfc"); page.keyboard.press("Escape"); page.wait_for_timeout(300)
         note = page.inner_text("#note")
         check("self-citation switch hides shared-author links", f"{n_ind} of {n_all}" in note, note)

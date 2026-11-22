@@ -29,6 +29,15 @@ def test_landing_page(tmp_path):
     assert "papers that use the Alpha and Gamma simulations" in page
 
 
+def test_landing_page_with_a_person(tmp_path):
+    root = str(tmp_path)
+    make_project(root, "alpha", {"name": "Alpha"}, [{"y": 2021}])
+    make_project(root, "ann", {"name": "Doe", "card_title": "Ann Doe", "papers_phrase": "papers by Ann Doe"}, [{"y": 2020}])
+    page = build_index.build(root)
+    assert "<h2>Ann Doe</h2>" in page and "<h2>Alpha</h2>" in page
+    assert "Interactive maps of the papers that use the Alpha simulations and papers by Ann Doe:" in page
+
+
 def test_landing_page_matches_this_repository():
     # the committed index.html is what build_index.py makes from the committed configs and sites
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

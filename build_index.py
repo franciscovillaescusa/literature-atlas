@@ -20,7 +20,7 @@ PAGE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Literature Atlases</title>
-<meta name="description" content="Interactive maps of the papers that use {names}: topics, citations and collaborations.">
+<meta name="description" content="Interactive maps of the {names}: topics, citations and collaborations.">
 <style>
   :root {{ --bg: #f7f7f5; --surface: #ffffff; --ink: #1d2129; --ink-2: #555b66; --edge: #e2e3e0; --accent: #2f6fd0; }}
   @media (prefers-color-scheme: dark) {{ :root {{ --bg: #12151c; --surface: #1a1e27; --ink: #e8eaee; --ink-2: #a3a9b4; --edge: #2c313c; --accent: #6ea4f2; }} }}
@@ -44,7 +44,7 @@ PAGE = """<!doctype html>
 <body>
 <main>
   <h1>Literature Atlases</h1>
-  <p class="lead">Interactive maps of the papers that use a simulation suite: a topic map, the citation network,
+  <p class="lead">Interactive maps of research papers: a topic map, the citation network,
     the co-author network, a searchable table and trends over time.</p>
   <div class="cards">
 {cards}
@@ -70,7 +70,7 @@ def page_data(path):
 
 def build(root="."):
     """The landing page for every project in <root>/projects that has a built atlas."""
-    cards, names = [], []
+    cards, phrases = [], []
     for proj in sorted(os.listdir(os.path.join(root, "projects"))):
         cfg_path, site = os.path.join(root, "projects", proj, "config.json"), os.path.join(root, proj, "index.html")
         if not (os.path.exists(cfg_path) and os.path.exists(site)):
@@ -78,11 +78,16 @@ def build(root="."):
         cfg, D = json.load(open(cfg_path, encoding="utf-8")), page_data(site)
         years = [p["y"] for p in D["papers"]]
         stats = f"{len(D['papers'])} papers · {len(D['authors'])} authors · {min(years)}–{max(years)}"
-        cards.append(CARD.format(href=html.escape(proj) + "/", name=html.escape(cfg["name"]),
+        cards.append(CARD.format(href=html.escape(proj) + "/", name=html.escape(cfg.get("card_title", cfg["name"])),
                                  description=html.escape(cfg.get("description", "")), stats=html.escape(stats),
                                  fetched=html.escape(D["fetched"])))
-        names.append(cfg["name"])
-    names_text = "the " + " and ".join([", ".join(names[:-1]), names[-1]] if len(names) > 1 else names) + " simulations"
+        phrases.append(cfg.get("papers_phrase", f"papers that use the {cfg['name']} simulations"))
+    sims = [p[len("papers that use the "):-len(" simulations")] for p in phrases
+            if p.startswith("papers that use the ") and p.endswith(" simulations")]
+    others = [p for p in phrases if p not in [f"papers that use the {s} simulations" for s in sims]]
+    if sims:   # "papers that use the A, B and C simulations"
+        others.insert(0, "papers that use the " + " and ".join([", ".join(sims[:-1]), sims[-1]] if len(sims) > 1 else sims) + " simulations")
+    names_text = " and ".join([", ".join(others[:-1]), others[-1]] if len(others) > 1 else others)
     return PAGE.format(cards="\n".join(cards), names=html.escape(names_text), repo=REPO_URL)
 
 

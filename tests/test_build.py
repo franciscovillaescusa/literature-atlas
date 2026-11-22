@@ -280,3 +280,64 @@ def test_favicon(B):
         uri = B.favicon(name)
         svg = urllib.parse.unquote(uri.split(",", 1)[1])
         assert uri.startswith("data:image/svg+xml,") and f">{letter}</text>" in svg and "<y" not in svg
+
+
+# ----------------------------------------------------------------------------- arXiv-search projects
+def feed(total, ids_authors):
+    entries = "".join(f"<entry><id>http://arxiv.org/abs/{i}v2</id><title>Paper {i}</title>"
+                      + "".join(f"<author><name>{a}</name></author>" for a in au) + "</entry>" for i, au in ids_authors)
+    return ('<feed xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'
+            f"<opensearch:totalResults>{total}</opensearch:totalResults>{entries}</feed>")
+
+
+def test_arxiv_search_source_pages_and_checks_the_author(B, monkeypatch):
+    pages = {0: feed(3, [("2601.00001", ["Ann Doe-Smith", "B. Roe"]), ("2601.00002", ["Ann Doe", "Smith Jones"])]),
+             2: feed(3, [("2512.00003", ["A. Doe-Smith"])])}
+    monkeypatch.setattr(B, "arxiv_get", lambda params: pages[params["start"]])
+    monkeypatch.setattr(B.time, "sleep", lambda s: None)
+    got = B.fetch_entries_arxiv('au:"Doe-Smith"', "Doe-Smith", page=2)
+    # 2601.00002 matched the words "Doe" and "Smith" in two different names: skipped
+    assert [e["arxiv"] for e in got] == ["2601.00001", "2512.00003"] and [e["n"] for e in got] == [1, 2]
+    assert got[0]["url"] == "https://arxiv.org/abs/2601.00001" and got[0]["bibcode"] is None
+
+
+def test_arxiv_search_source_refuses_a_short_answer(B, monkeypatch):
+    monkeypatch.setattr(B, "arxiv_get", lambda params: feed(5, [("2601.00001", ["Ann Doe"])]) if params["start"] == 0 else feed(5, []))
+    monkeypatch.setattr(B.time, "sleep", lambda s: None)
+    with pytest.raises(SystemExit, match="returned 1 of 5"):
+        B.fetch_entries_arxiv('au:"Doe"', "Doe")
+
+
+def test_project_source_and_text_settings(B, cfg):
+    p = B.Project(cfg)
+    assert (p.source, p.title, p.subject, p.page_extra) == (None, f"{cfg['name']} Literature Atlas", f"{cfg['name']} simulations", {})
+    cfg.update(source={"type": "arxiv", "query": 'au:"Doe"', "author": "Doe"}, title="Ann Doe: Publications",
+               axis_labels={"suite": ["Simulations", "simulations"]})
+    p = B.Project(cfg)
+    assert p.source["author"] == "Doe" and p.title == "Ann Doe: Publications" and "axis_labels" in p.page_extra
+    cfg.update(source={"type": "ads"})
+    with pytest.raises(SystemExit, match="source must be"):
+        B.Project(cfg)
+
+
+def test_hyphenated_surnames_are_not_merged_by_their_last_part(B):
+    c = B.canonical_authors(["P. Gómez-Alvarez", "Pedro Tarancón-Álvarez", "A. Manjón-García", "Alex M. Garcia",
+                             "F. Villaescusa Navarro", "Francisco Villaescusa-Navarro", "D. Anglés-Alcázar", "Daniel Angles-Alcazar"])
+    assert c["P. Gómez-Alvarez"] == "P. Gómez-Alvarez" and c["A. Manjón-García"] == "A. Manjón-García"
+    assert c["F. Villaescusa Navarro"] == "Francisco Villaescusa-Navarro"   # the same surname written with a space
+    assert c["D. Anglés-Alcázar"] == c["Daniel Angles-Alcazar"]
+
+
+def test_author_aliases_merge_misspellings(B):
+    recs = [{"authors": ["Francesco Doe-Roe", "B. Lee"]}, {"authors": ["Francisco Doe-Roe"]}]
+    authors, au_of = B.author_index(recs, {"Francesco Doe-Roe": "Francisco Doe-Roe"})
+    assert authors == ["B. Lee", "Francisco Doe-Roe"] and au_of == [[1, 0], [1]]
+
+
+def test_large_collaborations_count_only_their_first_authors(B):
+    au_of = [[0, 1], [1, 2], [0, 1, 2, 3, 4, 5]]   # the last paper is a "large collaboration" with co_max=3
+    shown, pairs, npap = B.coauthor_network(au_of, co_max=3)
+    assert shown == [0, 1, 2] and pairs == {(0, 1): 2, (1, 2): 2, (0, 2): 1} and npap == {0: 2, 1: 3, 2: 2}
+    shown, pairs, npap = B.coauthor_network(au_of, co_max=3, keep=5)   # the owner (5) always counts
+    assert shown == [0, 1, 2, 5] and pairs[(0, 3)] == 1 and len(pairs) == 6
+    assert B.coauthor_network(au_of)[0] == [0, 1, 2, 3, 4, 5] and len(B.coauthor_network(au_of)[1]) == 15

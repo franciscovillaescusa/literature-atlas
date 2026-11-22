@@ -87,6 +87,18 @@ class Project:
               cluster in --recluster)}], unassigned_short,
       topic_seed: {arXiv ID: index into topics}  (hand-checked topics, kept fixed on later builds),
       tag_axes: {suite: [...], data: [...], method: [...]}  (allowed tag names).
+    Optional, for a project that is not a simulation suite's publications page (defaults in brackets):
+      source: {"type": "arxiv", "query": arXiv API search_query, "author": surname every paper must list}
+              -- the paper list is an arXiv search instead of the page at pubs_url [the publications page],
+      title [<name> Literature Atlas], tagline_lead [Every paper that uses the], subject [<name> simulations]
+              (the tagline is "<tagline_lead> <subject, linked to homepage>, mapped by ..."),
+      papers_phrase [papers that use the <name> simulations] (link previews), list_label [<name> publications page],
+      missing_note (the note in "Suggest a missing paper" issues), card_title [name] (landing page),
+      axis_labels: {suite|data|method: [singular label, plural in lower case]} [Suite/suites, Data/data, Method/methods],
+      coauthor_max: in the co-author network, papers with more authors count only their first coauthor_max
+              (plus the owner) [no limit],
+      author_aliases: {spelling: name} for misspelled author names to merge [none],
+      owner: the author of every paper in a person's atlas, not counted when finding self-citations [none].
     A config the page cannot show (bad name, non-http(s) address, more than 10 topics) stops the build."""
 
     def __init__(self, cfg):
@@ -106,6 +118,18 @@ class Project:
         self.topic_short = [t.get("short", t["name"]) for t in cfg["topics"]] + [cfg.get("unassigned_short", "Unassigned")]
         self.topic_seed = {k: int(v) for k, v in cfg.get("topic_seed", {}).items()}
         self.tag_axes = cfg["tag_axes"]
+        self.source = cfg.get("source")
+        if self.source and not (self.source.get("type") == "arxiv" and self.source.get("query") and self.source.get("author")):
+            sys.exit('config: source must be {"type": "arxiv", "query": ..., "author": ...}')
+        self.title = cfg.get("title", f"{self.name} Literature Atlas")
+        self.tagline_lead = cfg.get("tagline_lead", "Every paper that uses the")
+        self.subject = cfg.get("subject", f"{self.name} simulations")
+        self.papers_phrase = cfg.get("papers_phrase", f"papers that use the {self.name} simulations")
+        # page settings that only reach the page when set, so projects without them build as before
+        self.page_extra = {k: cfg[k] for k in ("list_label", "missing_note", "axis_labels", "coauthor_max", "owner") if k in cfg}
+        self.coauthor_max = cfg.get("coauthor_max")   # papers with more authors add no co-author links
+        self.author_aliases = cfg.get("author_aliases", {})
+        self.owner = cfg.get("owner")
 
 def log(*a):
     print(*a, flush=True)
@@ -130,6 +154,54 @@ def fetch_entries(pubs_url):
             "arxiv": ax.group(1) if ax else None, "bibcode": None if ax else bib,
         })
     log(f"publications page: {len(entries)} entries, {sum(1 for e in entries if e['arxiv'])} with arXiv IDs")
+    return entries
+
+
+def arxiv_get(params):
+    """One arXiv API request, backing off when arXiv rate-limits (HTTP 429) or is busy (503)."""
+    for attempt in range(6):
+        r = requests.get("http://export.arxiv.org/api/query", headers=UA, timeout=120, params=params)
+        if r.status_code not in (429, 503):
+            break
+        log(f"arXiv HTTP {r.status_code}, retrying in {15 * (attempt + 1)} s...")
+        time.sleep(15 * (attempt + 1))
+    r.raise_for_status()
+    return r.text
+
+
+def same_surname(name, surname):
+    norm = lambda s: re.sub(r"[^a-z]", "", unicodedata.normalize("NFKD", s).lower())
+    return norm(name).endswith(norm(surname))
+
+
+def fetch_entries_arxiv(query, author, page=200):
+    """The paper list of a project whose source is an arXiv search (newest first), as entries like those of
+    fetch_entries. Papers that do not list `author` (a surname) are skipped: a phrase search can also match
+    e.g. two authors whose names contain its words."""
+    ns = {"a": "http://www.w3.org/2005/Atom", "o": "http://a9.com/-/spec/opensearch/1.1/"}
+    entries, skipped, start, total = [], [], 0, None
+    while total is None or start < total:
+        root = ET.fromstring(arxiv_get({"search_query": query, "start": start, "max_results": page,
+                                        "sortBy": "submittedDate", "sortOrder": "descending"}))
+        total = int(root.find("o:totalResults", ns).text)
+        found = root.findall("a:entry", ns)
+        if not found:
+            break
+        for e in found:
+            aid = re.sub(r"v\d+$", "", e.find("a:id", ns).text.rsplit("/abs/", 1)[-1])
+            authors = [a.find("a:name", ns).text for a in e.findall("a:author", ns)]
+            title = " ".join(e.find("a:title", ns).text.split())
+            if not any(same_surname(a, author) for a in authors):
+                skipped.append(aid)
+                continue
+            entries.append({"n": len(entries) + 1, "title": title, "authors": authors, "label": "arXiv",
+                            "url": f"https://arxiv.org/abs/{aid}", "arxiv": aid, "bibcode": None})
+        start += len(found)
+        log(f"arXiv search: {start}/{total}")
+        time.sleep(3)   # arXiv asks for >= 3 s between requests
+    if total and start < total:
+        sys.exit(f"arXiv search returned {start} of {total} results; try again later")
+    log(f"arXiv search: {len(entries)} papers" + (f"; skipped {len(skipped)} without {author}: {skipped}" if skipped else ""))
     return entries
 
 
@@ -438,10 +510,19 @@ def norm_name(s):
 def canonical_authors(names):
     """Merge spelling variants: same surname + first initial. Different full first names stay separate
     (e.g. Bitao vs Bonny Wang); abbreviated forms join the most frequent full form."""
+    # the surname is the last word, with every part of a hyphenated one (Gómez-Alvarez and Tarancón-Álvarez
+    # differ), also when written with a space (Villaescusa Navarro = Villaescusa-Navarro)
+    def surname(nm):
+        last = nm.split()[-1]
+        return "".join(norm_name(last)) if "-" in last else norm_name(nm)[-1]
+    compounds = {surname(nm) for nm in names if "-" in nm.split()[-1]}
     groups = defaultdict(list)
     for nm in names:
         t = norm_name(nm)
-        groups[(t[0][0], t[-1])].append(nm)
+        s = surname(nm)
+        if len(t) >= 3 and t[-2] + t[-1] in compounds:
+            s = t[-2] + t[-1]
+        groups[(t[0][0], s)].append(nm)
     canon = {}
     for key, nms in groups.items():
         full, abbrev = defaultdict(list), []
@@ -991,9 +1072,12 @@ def citation_links(recs, ads_refs):
     return refs, {"both": n_both, "s2": n_s2, "ads": n_ads}
 
 
-def author_index(recs):
-    """The merged author names (sorted) and, for each paper, the indices of its authors in that list."""
-    canon = canonical_authors([nm for r in recs for nm in r["authors"]])
+def author_index(recs, aliases=None):
+    """The merged author names (sorted) and, for each paper, the indices of its authors in that list.
+    `aliases` {spelling: name} merges misspellings the automatic merging keeps apart (e.g. a different first name)."""
+    aliases = aliases or {}
+    canon = canonical_authors([aliases.get(nm, nm) for r in recs for nm in r["authors"]])
+    canon.update({nm: canon[aliases[nm]] for r in recs for nm in r["authors"] if nm in aliases})
     authors = sorted(set(canon.values()))
     aidx = {a: n for n, a in enumerate(authors)}
     au_of = []
@@ -1024,7 +1108,31 @@ def prepare_store(proj, store, recs, kept_ids, tags_path):
             store.setdefault(key, {}).setdefault(u, v)
 
 
-def compute_layouts(recs, X, T, emb, refs, authors, au_of, store):
+def network_authors(au, co_max=None, keep=None):
+    """The authors of a paper that count in the co-author network: all of them, or for a paper with more than
+    co_max authors (a large collaboration) the first co_max plus `keep` (the owner of a person's atlas)."""
+    if co_max is None or len(au) <= co_max:
+        return au
+    return au[:co_max] + ([keep] if keep in au[co_max:] else [])
+
+
+def coauthor_network(au_of, co_max=None, keep=None):
+    """The co-author network: one link per pair of authors who share papers, counting only network_authors
+    of each paper; authors who are left out on all their papers are not in it. Returns (the author indices in
+    the network, {(i, j): shared papers} and {i: papers} with i, j positions in that list)."""
+    au_co = [network_authors(au, co_max, keep) for au in au_of]
+    shown = sorted({a for au in au_co for a in au})
+    loc = {a: n for n, a in enumerate(shown)}
+    au_co = [[loc[a] for a in au] for au in au_co]
+    pairs = Counter()
+    for au in au_co:
+        for x in range(len(au)):
+            for y in range(x + 1, len(au)):
+                pairs[(min(au[x], au[y]), max(au[x], au[y]))] += 1
+    return shown, pairs, Counter(a for au in au_co for a in au)
+
+
+def compute_layouts(recs, X, T, emb, refs, authors, au_of, store, co_max=None, keep=None):
     """Every map layout (stored positions are kept; only new papers and authors are placed) and the
     "most similar papers" lists. Returns a dict of position arrays/dicts plus "similar"."""
     N, uids = len(recs), [r["uid"] for r in recs]
@@ -1038,22 +1146,16 @@ def compute_layouts(recs, X, T, emb, refs, authors, au_of, store):
     cit_args = (uids, cs_, ct_, np.full(len(cs_), 40.0), np.full(len(cs_), 0.35), 3 + np.sqrt(citers) * 2.2, 90, 0.18)
     cit = network_positions(*cit_args, store.get("citations", {}))
     cit2 = network_positions(*cit_args, store.get("citations2d", {}), dim=2)
-    # co-author network: one link per pair of authors who share papers, shorter for closer collaborators
-    npap = Counter(a for au in au_of for a in au)
-    pairs = Counter()
-    for au in au_of:
-        for x in range(len(au)):
-            for y in range(x + 1, len(au)):
-                pairs[(min(au[x], au[y]), max(au[x], au[y]))] += 1
+    shown, pairs, npap = coauthor_network(au_of, co_max, keep)
     pl = list(pairs.items())
     s_ = np.array([a for (a, _), _ in pl], int)
     t_ = np.array([b for (_, b), _ in pl], int)
     c_ = np.array([c for _, c in pl], float)
-    co_args = (authors, s_, t_, 60 / np.sqrt(c_), np.ones(len(c_)),   # strength = 1/min(degree) via force3d (d3 default): small teams stay together
-               2.5 + np.sqrt(np.array([npap[a] for a in range(len(authors))], float)) * 2, 70, 0.12)
+    co_args = ([authors[a] for a in shown], s_, t_, 60 / np.sqrt(c_), np.ones(len(c_)),   # strength = 1/min(degree) via force3d (d3 default): small teams stay together
+               2.5 + np.sqrt(np.array([npap[a] for a in range(len(shown))], float)) * 2, 70, 0.12)
     co = network_positions(*co_args, store.get("coauthors1", {}))
     co2 = network_positions(*co_args, store.get("coauthors1_2d", {}), dim=2)
-    return {"pos2": pos2, "graph3": graph3, "cit": cit, "cit2": cit2, "co": co, "co2": co2, "similar": similar}
+    return {"pos2": pos2, "graph3": graph3, "cit": cit, "cit2": cit2, "co": co, "co2": co2, "co_ids": shown, "similar": similar}
 
 
 def make_store(recs, authors, lay, store, fetched):
@@ -1065,9 +1167,9 @@ def make_store(recs, authors, lay, store, fetched):
         "topics2d": {uids[n]: rd(lay["pos2"][n], 4) for n in range(N)},
         "topics3d_graph": {uids[n]: rd(lay["graph3"][n]) for n in range(N)},
         "citations": {uids[n]: rd(lay["cit"][n]) for n in range(N)},
-        "coauthors1": {authors[a]: rd(lay["co"][a]) for a in range(len(authors))},
+        "coauthors1": {authors[a]: rd(lay["co"][n]) for n, a in enumerate(lay["co_ids"])},
         "citations2d": {uids[n]: rd(lay["cit2"][n]) for n in range(N)},
-        "coauthors1_2d": {authors[a]: rd(lay["co2"][a]) for a in range(len(authors))},
+        "coauthors1_2d": {authors[a]: rd(lay["co2"][n]) for n, a in enumerate(lay["co_ids"])},
     }
     uidset = set(uids)
     retired = {key: {u: v for u, v in store.get(key, {}).items() if u not in uidset} for key in PAPER_LAYOUTS}
@@ -1090,11 +1192,12 @@ def build_data(proj, entries, arx, s2, ads_rec, ads_cit, ads_refs, store, fetche
     X, T, tv, emb = text_features(recs)
     topic = assign_topics(proj, recs, X, T, tv, emb, topic_override, recluster)
     refs, refsrc = citation_links(recs, ads_refs)
-    authors, au_of = author_index(recs)
+    authors, au_of = author_index(recs, proj.author_aliases)
     prepare_store(proj, store, recs, kept_ids, tags_path)
     uids = [r["uid"] for r in recs]
     tags = load_tags(tags_path, uids, [r["title"] for r in recs], proj.tag_axes)
-    lay = compute_layouts(recs, X, T, emb, refs, authors, au_of, store)
+    lay = compute_layouts(recs, X, T, emb, refs, authors, au_of, store, proj.coauthor_max,
+                          authors.index(proj.owner) if proj.owner in authors else None)
     new_store = make_store(recs, authors, lay, store, fetched)
 
     def is_new(u):   # added to the site in the last NEW_DAYS days
@@ -1130,7 +1233,7 @@ def build_data(proj, entries, arx, s2, ads_rec, ads_cit, ads_refs, store, fetche
             "co2d": {"1": [new_store["coauthors1_2d"].get(a) for a in authors]},
             "refsrc": refsrc, "tagaxes": proj.tag_axes,
             "fetched": fetched, "nads": sum(1 for p in papers if p["cs"] == 0),
-            "proj": {"name": proj.name, "pubs": proj.pubs_url, "repo": REPO_URL, "home": proj.homepage}, "notes": notes}
+            "proj": {"name": proj.name, "pubs": proj.pubs_url, "repo": REPO_URL, "home": proj.homepage, **proj.page_extra}, "notes": notes}
     return data, new_store
 
 
@@ -1167,10 +1270,20 @@ def make_preview(data, template, path, proj):
     pad = 0.06 * (xy.max(0) - xy.min(0))
     ax.set_xlim(xy[:, 0].min() - pad[0], xy[:, 0].max() + pad[0]); ax.set_ylim(xy[:, 1].min() - pad[1], xy[:, 1].max() + pad[1])
     ax.set_aspect("equal", adjustable="box")   # keep the map inside its own area, never behind the text
-    fig.text(0.05, 0.74, proj.name, fontsize=46, fontweight="bold", color=ink, family="DejaVu Sans")
-    fig.text(0.05, 0.645, "Literature Atlas", fontsize=46, fontweight="bold", color=ink, family="DejaVu Sans")
-    fig.text(0.05, 0.50, f"Every paper that uses the {proj.name}\nsimulations, mapped by topic,\ncitations and collaborations.",
-             fontsize=19, color=ink2, linespacing=1.45, va="top", family="DejaVu Sans")
+    import textwrap
+    default = proj.title == f"{proj.name} Literature Atlas"
+    # the title in up to 3 lines of <= 20 characters, split first at ": " (e.g. "Ann Doe: Publications")
+    heads = [proj.name, "Literature Atlas"] if default else [w for part in proj.title.split(": ") for w in textwrap.wrap(part, 20)][:3]
+    texts = [fig.text(0.05, 0.645 + 0.095 * (len(heads) - 1 - i), line, fontsize=46, fontweight="bold", color=ink, family="DejaVu Sans")
+             for i, line in enumerate(heads)]
+    if not default:   # a long title shrinks to fit left of the map (x < 0.45)
+        r = fig.canvas.get_renderer()
+        widest = max(t.get_window_extent(r).width for t in texts) / fig.bbox.width
+        for t in texts:
+            t.set_fontsize(46 * min(1, 0.40 / widest))
+    tagline = (f"Every paper that uses the {proj.name}\nsimulations, mapped by topic,\ncitations and collaborations." if default else
+               "\n".join(textwrap.wrap(f"{proj.tagline_lead} {proj.subject}, mapped by topic, citations and collaborations.", 30)))
+    fig.text(0.05, 0.50, tagline, fontsize=19, color=ink2, linespacing=1.45, va="top", family="DejaVu Sans")
     n_links = sum(len(p["r"]) for p in papers)
     fig.text(0.05, 0.20, f"{len(papers)} papers · {len(data['authors'])} authors · {n_links} citation links",
              fontsize=16, color=ink, family="DejaVu Sans")
@@ -1217,7 +1330,9 @@ def main():
     os.makedirs(args.cache, exist_ok=True)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
 
-    entries = load_or_fetch(args.cache, "entries.json", lambda: fetch_entries(proj.pubs_url), args.offline)
+    src = proj.source
+    entries = load_or_fetch(args.cache, "entries.json", (lambda: fetch_entries_arxiv(src["query"], src["author"])) if src
+                            else (lambda: fetch_entries(proj.pubs_url)), args.offline)
     ax_ids = [e["arxiv"] for e in entries if e["arxiv"]]
     bibs = [e["bibcode"] for e in entries if e["bibcode"]]
     arx = load_or_fetch(args.cache, "arxiv.json", lambda: fetch_arxiv(ax_ids), args.offline)
@@ -1272,18 +1387,20 @@ def main():
     base = os.path.splitext(args.template)[0]
     read = lambda path: open(path, encoding="utf-8").read()
     template = read(args.template).replace("__CSS__", read(base + ".css")).replace("__JS__", read(base + ".js"))
+    for key, val in (("__TITLE__", proj.title), ("__LEAD__", proj.tagline_lead), ("__SUBJECT__", proj.subject)):
+        template = template.replace(key, html_mod.escape(val))
     template = template.replace("__NAME__", html_mod.escape(proj.name)).replace("__HOME__", html_mod.escape(proj.homepage))
     template = template.replace("__ICON__", favicon(proj.name))
     html = template.replace("__DATA__", blob)
     # complete document: <head> with description, link-preview and analytics tags
     head, body = html.split("<header>", 1)
     n = len(data["papers"])
-    desc = (f"Interactive map of the {n} papers that use the {proj.name} simulations: "
+    desc = (f"Interactive map of the {n} {html_mod.escape(proj.papers_phrase)}: "
             "topics, citation network and co-author network.")
     html = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             f'<meta name="description" content="{desc}">\n'
-            f'<meta property="og:title" content="{proj.name} Literature Atlas">\n'
+            f'<meta property="og:title" content="{html_mod.escape(proj.title)}">\n'
             f'<meta property="og:description" content="{desc}">\n'
             '<meta property="og:type" content="website">\n'
             f'<meta property="og:url" content="{proj.site_url}">\n'

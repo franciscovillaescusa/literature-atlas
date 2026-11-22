@@ -1,0 +1,3366 @@
+{
+ "2611.17052": {
+  "title": "Auditing AI peer reviewers: a benchmark on real scientific papers",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2610.40617": {
+  "title": "Field-level inference under pressure: the information content of the thermal Sunyaev-Zel'dovich field",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "CMB & SZ"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ]
+ },
+ "2610.23825": {
+  "title": "ENFR: Evidence Networks with Flow-Matched References for Amortized Simulation-Based Model Inference",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Normalizing flows"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "Large-scale structure",
+   "Normalizing flows"
+  ],
+  "note": "generic SBI method paper; applications/simulations not specified"
+ },
+ "2610.06710": {
+  "title": "AI-assisted super-resolution cosmological simulations V: Cosmology-aware super-resolution",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2610.00492": {
+  "title": "EurekaBench: Measuring Agentic Ability to Discover New Scientific Insights",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2609.30536": {
+  "title": "FOTO: Figure-Level Semantic Search for Astronomy",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents",
+   "Other ML"
+  ],
+  "uncertain": [
+   "Other ML"
+  ]
+ },
+ "2609.23982": {
+  "title": "The CAMELS-CROCODILE Simulation Suite: A New Cosmology--Astrophysics Playground for Machine Learning",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2609.09504": {
+  "title": "Inductive Biases in Field-Level Cosmological Inference from Galaxy Catalogs",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2606.30855": {
+  "title": "Deep Learning for Astrophysics: An Open Textbook from the NASA Cosmic Origins AI/ML Science and Technology Interest Group",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Generative models",
+   "LLM agents",
+   "Other ML"
+  ],
+  "uncertain": [
+   "Other ML"
+  ]
+ },
+ "2606.22859": {
+  "title": "AI Scientists as Engines of Discovery: A Case for Development within Reformed Institutions",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2606.10038": {
+  "title": "Learning the Universe with the 2nd Generation of CAMELS: Varying 35 parameters of the IllustrisTNG model in (50Mpc/h)^3 boxes",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Graph neural networks",
+   "Simulation-based inference",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2605.31548": {
+  "title": "Reconciling the Fundamental Plane of Early-Type Galaxies with hydrodynamical simulations: The case of IllustrisTNG100-1",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2604.17981": {
+  "title": "Efficiently emulating distribution functions in gigaparsec volumes for varying cosmological parameters",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2603.20855": {
+  "title": "Field-Level Inference of Primordial Non-Gaussianity with the Quijote Simulation Suite",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2602.07651": {
+  "title": "Cosmology with one galaxy: An analytic formula relating $Ω_{\\rm m}$ with galaxy properties",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Symbolic regression"
+  ],
+  "uncertain": []
+ },
+ "2601.07543": {
+  "title": "CASCO: Cosmological and AStrophysical parameters from Cosmological simulations and Observations IV. Testing warm dark matter cosmologies with galaxy scaling relations: A joint simulation-observation study using DREAMS simulations",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2601.06290": {
+  "title": "CAMELS Environments: The Impact of Local Neighbours on Galaxy Evolution across the SIMBA, IllustrisTNG, ASTRID, and Swift-EAGLE Simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2601.06258": {
+  "title": "Cosmological back-reaction of baryons on dark matter in the CAMELS simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2512.10222": {
+  "title": "Galaxy Phase-Space and Field-Level Cosmology: The Strength of Semi-Analytic Models",
+  "suite": [
+   "CAMELS",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "CAMELS"
+  ],
+  "note": "SAMs+hydro in 25 Mpc/h boxes are CAMELS(-SAM) but CAMELS not named"
+ },
+ "2512.03132": {
+  "title": "The DREAMS Project: Disentangling the Impact of Halo-to-Halo Variance and Baryonic Feedback on Milky Way Dark Matter Density Profiles",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2512.02095": {
+  "title": "The DREAMS Project: Disentangling the Impact of Halo-to-Halo Variance and Baryonic Feedback on Milky Way Satellite Galaxies",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2512.00148": {
+  "title": "The DREAMS Project: A New Suite of 1,024 Simulations to Contextualize the Milky Way and Assess Physics Uncertainties",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2511.13393": {
+  "title": "Learning Cosmology from Nearest Neighbour Statistics",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "CNN",
+   "Simulation-based inference"
+  ]
+ },
+ "2511.05367": {
+  "title": "Linking Warm Dark Matter to Merger Tree Histories via Deep Learning Networks",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks"
+  ],
+  "uncertain": []
+ },
+ "2510.26887": {
+  "title": "The Denario project: Deep knowledge AI agents for scientific discovery",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2510.20086": {
+  "title": "MG-NECOLA: Fast Neural Emulators for Modified Gravity Cosmologies",
+  "suite": [
+   "Quijote",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2510.14766": {
+  "title": "Predicting the Subhalo Mass Functions in Simulations from Galaxy Images",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2510.05037": {
+  "title": "On the sensitivity of different galaxy properties to warm dark matter",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference",
+   "Normalizing flows",
+   "Emulators & regression ML",
+   "Symbolic regression"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2509.02661": {
+  "title": "The Future of Artificial Intelligence and the Mathematical and Physical Sciences (AI+MPS)",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Surveys & instruments",
+   "AI for science"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": [
+   "Surveys & instruments",
+   "Other ML"
+  ]
+ },
+ "2509.01881": {
+  "title": "One latent to fit them all: a unified representation of baryonic feedback on matter distribution",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "Other ML"
+  ],
+  "note": "5,072 sims from 4 galaxy-formation models, very likely CAMELS but not named"
+ },
+ "2508.21152": {
+  "title": "How does feedback affect the star formation histories of galaxies?",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "2508.05728": {
+  "title": "CLAPP: The CLASS LLM Agent for Pair Programming",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2508.01855": {
+  "title": "$\\texttt{GENGARS}$: Accurate non-Gaussian initial conditions with arbitrary bispectrum for N-body simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2507.07257": {
+  "title": "Open Source Planning & Control System with Language Agents for Autonomous Scientific Discovery",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2507.07155": {
+  "title": "Evaluating Retrieval-Augmented Generation Agents for Autonomous Scientific Discovery in Astrophysics",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "AI for science"
+  ],
+  "method": [
+   "LLM agents"
+  ],
+  "uncertain": []
+ },
+ "2507.03707": {
+  "title": "CosmoBench: A Multiscale, Multiview, Multitask Cosmology Benchmark for Geometric Deep Learning",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "AI for science"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "AI for science"
+  ],
+  "note": "Simulations not named in abstract (likely Quijote/CAMELS-SAM); tagged Other simulations per naming rule."
+ },
+ "2505.23904": {
+  "title": "Cosmology with Topological Deep Learning",
+  "suite": [
+   "CAMELS",
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks"
+  ],
+  "uncertain": []
+ },
+ "2505.13620": {
+  "title": "Field-Level Comparison and Robustness Analysis of Cosmological N-body Simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2504.17839": {
+  "title": "Interpreting Cosmological Information from Neural Networks in the Hydrodynamic Universe",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Other ML"
+  ],
+  "uncertain": [
+   "CAMELS"
+  ]
+ },
+ "2504.06919": {
+  "title": "Correcting for interloper contamination in the power spectrum with neural networks",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2503.22654": {
+  "title": "On the effects of parameters on galaxy properties in CAMELS and the predictability of $Ω_{\\rm m}$",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": [
+   "Other ML"
+  ],
+  "note": "ML for Omega_m is prior work; this paper uses optimal transport/statistics"
+ },
+ "2503.13755": {
+  "title": "How many simulations do we need for simulation-based inference in cosmology?",
+  "suite": [
+   "Quijote",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Emulators & regression ML"
+  ]
+ },
+ "2503.01956": {
+  "title": "Lost in the FoG: Pitfalls of Models for Large-Scale Hydrogen Distributions",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2502.17568": {
+  "title": "Cosmology with One Galaxy: Auto-Encoding the Galaxy Properties Manifold",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2502.13589": {
+  "title": "CASCO: Cosmological and AStrophysical parameters from Cosmological simulations and Observations III. The physics behind the emergence of the golden mass scale",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2502.13242": {
+  "title": "Learning the Universe: $3\\ h^{-1}{\\rm Gpc}$ Tests of a Field Level $N$-body Simulation Emulator",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "CNN"
+  ],
+  "note": "Learning the Universe field-level emulator; N-body suite not named (likely Quijote)"
+ },
+ "2502.13239": {
+  "title": "Towards Robustness Across Cosmological Simulation Models TNG, SIMBA, ASTRID, and EAGLE",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN",
+   "Other ML"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2412.05662": {
+  "title": "Probing massive neutrinos and modified gravity with redshift-space morphologies and anisotropies of large-scale structure",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2412.04559": {
+  "title": "X-raying CAMELS: Constraining Baryonic Feedback in the Circum-Galactic Medium with the CAMELS simulations and eRASS X-ray Observations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2411.14377": {
+  "title": "The constraining power of the Marked Power Spectrum: an analytical study",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2411.13960": {
+  "title": "Learning the Universe: Cosmological and Astrophysical Parameter Inference with Galaxy Luminosity Functions and Colours",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2410.21225": {
+  "title": "Boosting HI-Galaxy Cross-Clustering Signal through Higher-Order Cross-Correlations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2410.16361": {
+  "title": "Quantifying Baryonic Feedback on Warm-Hot Circumgalactic Medium in CAMELS Simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2410.10942": {
+  "title": "Cosmological and Astrophysical Parameter Inference from Stacked Galaxy Cluster Profiles Using CAMELS-zoomGZ",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "CMB & SZ"
+  ]
+ },
+ "2409.20507": {
+  "title": "Constraining Cosmology with Simulation-based inference and Optical Galaxy Cluster Abundance",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Perturbation theory & analytic models"
+  ],
+  "uncertain": []
+ },
+ "2409.09124": {
+  "title": "CHARM: Creating Halos with Auto-Regressive Multi-stage networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Normalizing flows",
+   "Generative models"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ],
+  "note": "Simulations not named (likely Quijote); flows used generatively."
+ },
+ "2409.02980": {
+  "title": "How DREAMS are made: Emulating Satellite Galaxy and Subhalo Populations with Diffusion Models and Point Clouds",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Generative models"
+  ],
+  "uncertain": [
+   "Graph neural networks"
+  ]
+ },
+ "2408.07699": {
+  "title": "Field-level Emulation of Cosmic Structure Formation with Cosmology and Redshift Dependence",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2407.18647": {
+  "title": "Towards unveiling the large-scale nature of gravity with the wavelet scattering transform",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2407.06641": {
+  "title": "Cosmological simulations of scale-dependent primordial non-Gaussianity",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2406.15546": {
+  "title": "The Impact of Non-Gaussian Primordial Tails on Cosmological Observables",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity",
+   "CMB & SZ"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2405.13491": {
+  "title": "Euclid. I. Overview of the Euclid mission",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2405.13119": {
+  "title": "Cosmology from Point Clouds with Dark Matter Halos from the Quijote Simulations",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2405.05598": {
+  "title": "Denoising Diffusion Delensing Delight: Reconstructing the Non-Gaussian CMB Lensing Potential with Diffusion Models",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "CMB & SZ"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2405.00766": {
+  "title": "Introducing the DREAMS Project: DaRk mattEr and Astrophysics with Machine learning and Simulations",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2403.10648": {
+  "title": "Debiasing with Diffusion: Probabilistic reconstruction of Dark Matter fields from galaxies with CAMELS",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2403.10609": {
+  "title": "Zooming by in the CARPoolGP lane: new CAMELS-TNG simulations of zoomed-in massive halos",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Emulators & regression ML",
+   "Fisher forecasts"
+  ],
+  "uncertain": []
+ },
+ "2403.02313": {
+  "title": "Probing the Circum-Galactic Medium with Fast Radio Bursts: Insights from the CAMELS Simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2403.00490": {
+  "title": "Quijote-PNG: Optimizing the summary statistics to measure Primordial non-Gaussianity",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Fisher forecasts"
+  ],
+  "uncertain": []
+ },
+ "2402.10997": {
+  "title": "Cosmological multifield emulator",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN",
+   "Generative models"
+  ],
+  "uncertain": [
+   "Neutral hydrogen & 21cm"
+  ]
+ },
+ "2401.17940": {
+  "title": "Can we constrain warm dark matter masses with individual galaxies?",
+  "suite": [
+   "DREAMS"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Normalizing flows"
+  ],
+  "uncertain": []
+ },
+ "2401.15891": {
+  "title": "A field-level emulator for modeling baryonic effects across hydrodynamic simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2311.10088": {
+  "title": "Taming assembly bias for primordial non-Gaussianity",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "Fisher forecasts"
+  ],
+  "note": "hydro simulations not named in abstract"
+ },
+ "2311.01588": {
+  "title": "Domain Adaptive Graph Neural Networks for Constraining Cosmological Parameters Across Multiple Data Sets",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2310.16884": {
+  "title": "Atomic Hydrogen Shows its True Colours: Correlations between HI and Galaxy Colour in Simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2310.15234": {
+  "title": "Field-level simulation-based inference with galaxy catalogs: the impact of systematic effects",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2310.08634": {
+  "title": "Cosmology with Galaxy Photometry Alone",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2309.12048": {
+  "title": "Cosmology with multiple galaxies",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2309.07912": {
+  "title": "An Observationally Driven Multifield Approach for Probing the Circum-Galactic Medium with Convolutional Neural Networks",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2309.05850": {
+  "title": "Predicting Interloper Fraction with Graph Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ],
+  "note": "Halo catalogs from unnamed simulations (likely Quijote)."
+ },
+ "2308.13648": {
+  "title": "Emulating Radiative Transfer with Artificial Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2307.11832": {
+  "title": "Cosmological baryon spread and impact on matter clustering in CAMELS",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Symbolic regression"
+  ],
+  "uncertain": []
+ },
+ "2307.06967": {
+  "title": "A Hierarchy of Normalizing Flows for Modelling the Galaxy-Halo Relationship",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Normalizing flows"
+  ],
+  "uncertain": []
+ },
+ "2306.11782": {
+  "title": "Signatures of a Parity-Violating Universe",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "2305.10597": {
+  "title": "Quijote-PNG: The Information Content of the Halo Mass Function",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Fisher forecasts"
+  ],
+  "uncertain": []
+ },
+ "2304.14432": {
+  "title": "Inferring Warm Dark Matter Masses with Deep Learning",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "2304.06084": {
+  "title": "Cosmology with one galaxy? -- The ASTRID model and robustness",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2304.02096": {
+  "title": "The CAMELS project: Expanding the galaxy formation model space with new ASTRID and 28-parameter TNG and SIMBA suites",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2303.07473": {
+  "title": "Invertible mapping between fields in CAMELS",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2302.14591": {
+  "title": "A universal equation to predict $Ω_{\\rm m}$ from halo and galaxy catalogues",
+  "suite": [
+   "CAMELS",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference",
+   "Symbolic regression"
+  ],
+  "uncertain": []
+ },
+ "2302.14101": {
+  "title": "Robust Field-level Likelihood-free Inference with Galaxies",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2301.02231": {
+  "title": "Predicting the impact of feedback on matter clustering with machine learning in CAMELS",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2301.02186": {
+  "title": "Inferring the impact of feedback on the matter distribution using the Sunyaev Zel'dovich effect: Insights from CAMELS simulations and ACT+DES data",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Emulators & regression ML"
+  ]
+ },
+ "2212.06860": {
+  "title": "Machine-learning cosmology from void properties",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Graph neural networks"
+  ]
+ },
+ "2211.16461": {
+  "title": "Calibrating cosmological simulations with implicit likelihood inference using galaxy growth observables",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2211.12457": {
+  "title": "Euclid: Modelling massive neutrinos in cosmology -- a code comparison",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "No ML"
+  ],
+  "note": "Euclid neutrino code comparison; some compared codes are emulators but no ML developed here."
+ },
+ "2211.07565": {
+  "title": "Quijote-PNG: Quasi-maximum likelihood estimation of Primordial Non-Gaussianity in the non-linear halo density field",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2211.05000": {
+  "title": "Emulating cosmological multifields with generative adversarial networks",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": [
+   "Neutral hydrogen & 21cm"
+  ]
+ },
+ "2209.06843": {
+  "title": "Robust field-level inference with dark matter halos",
+  "suite": [
+   "CAMELS",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2209.02075": {
+  "title": "The SZ flux-mass ($Y$-$M$) relation at low halo masses: improvements with symbolic regression and strong constraints on baryonic feedback",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Symbolic regression",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2209.00657": {
+  "title": "Studying the Warm Hot Intergalactic Medium in emission: a reprise",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Surveys & instruments"
+  ]
+ },
+ "2206.15450": {
+  "title": "Quijote PNG: The information content of the halo power spectrum and bispectrum",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2206.04594": {
+  "title": "Field Level Neural Network Emulator for Cosmological N-body Simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2206.04573": {
+  "title": "Simple lessons from complex learning: what a neural network model learns about cosmic structure formation",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2206.01709": {
+  "title": "Cosmological Information in the Marked Power Spectrum of the Galaxy Field",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2206.01624": {
+  "title": "Quijote-PNG: Quasi-maximum likelihood estimation of Primordial Non-Gaussianity in the non-linear dark matter density field",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Fisher forecasts"
+  ]
+ },
+ "2206.01619": {
+  "title": "Quijote-PNG: Simulations of primordial non-Gaussianity and the information content of the matter field power spectrum and bispectrum",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2205.07898": {
+  "title": "Fast and realistic large-scale structure from machine-learning-augmented random field simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2204.13713": {
+  "title": "Learning cosmology and clustering with cosmic graphs",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2204.07646": {
+  "title": "Wavelet Moments for Cosmological Parameter Estimation",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2204.05435": {
+  "title": "Quantification of high dimensional non-Gaussianities and its implication to Fisher analysis in cosmology",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2204.02408": {
+  "title": "Constraining cosmology with machine learning and galaxy clustering: the CAMELS-SAM suite",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2203.08056": {
+  "title": "Machine Learning and Cosmology",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Surveys & instruments",
+   "AI for science"
+  ],
+  "method": [
+   "Other ML"
+  ],
+  "uncertain": [
+   "Surveys & instruments",
+   "Other ML"
+  ]
+ },
+ "2201.04142": {
+  "title": "Breaking baryon-cosmology degeneracy with the electron density power spectrum",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2201.02708": {
+  "title": "The Circumgalactic Medium from the CAMELS Simulations: Forecasting Constraints on Feedback Processes from Future Sunyaev-Zeldovich Observations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Emulators & regression ML",
+   "Fisher forecasts"
+  ],
+  "uncertain": [
+   "Emulators & regression ML"
+  ]
+ },
+ "2201.02202": {
+  "title": "Cosmology with one galaxy?",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2201.01663": {
+  "title": "Percent-level constraints on baryonic feedback with spectral distortion measurements",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Emulators & regression ML",
+   "Perturbation theory & analytic models"
+  ],
+  "uncertain": []
+ },
+ "2201.01305": {
+  "title": "Augmenting astrophysical scaling relations with machine learning: application to reducing the Sunyaev-Zeldovich flux-mass scatter",
+  "suite": [
+   "CAMELS",
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Symbolic regression"
+  ],
+  "uncertain": []
+ },
+ "2201.01300": {
+  "title": "The CAMELS project: public data release",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [],
+  "note": "data release paper"
+ },
+ "2111.14874": {
+  "title": "Weighing the Milky Way and Andromeda with Artificial Intelligence",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks",
+   "Simulation-based inference"
+  ],
+  "uncertain": []
+ },
+ "2111.08683": {
+  "title": "Inferring halo masses with Graph Neural Networks",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Graph neural networks"
+  ],
+  "uncertain": []
+ },
+ "2111.02441": {
+  "title": "NECOLA: Towards a Universal Field-level Cosmological Emulator",
+  "suite": [
+   "Quijote",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": []
+ },
+ "2110.02983": {
+  "title": "HIFlow: Generating Diverse HI Maps and Inferring Cosmology while Marginalizing over Astrophysics using Normalizing Flows",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Normalizing flows",
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "2109.10915": {
+  "title": "The CAMELS Multifield Dataset: Learning the Universe's Fundamental Parameters with Artificial Intelligence",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "CNN",
+   "Simulation-based inference"
+  ]
+ },
+ "2109.10360": {
+  "title": "Robust marginalization of baryonic effects for cosmological inference at the field level",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2109.09747": {
+  "title": "Multifield Cosmology with Artificial Intelligence",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Simulation-based inference"
+  ],
+  "uncertain": [
+   "Simulation-based inference"
+  ]
+ },
+ "2109.07070": {
+  "title": "Inpainting hydrodynamical maps with deep learning",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "2109.04484": {
+  "title": "Finding universal relations in subhalo properties with artificial intelligence",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Emulators & regression ML",
+   "Symbolic regression"
+  ],
+  "uncertain": [
+   "Symbolic regression"
+  ]
+ },
+ "2109.03840": {
+  "title": "Reionization with Simba: How much does astrophysics matter in modeling cosmic reionization?",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2107.02304": {
+  "title": "The GIGANTES dataset: precision cosmology from voids in the machine learning era",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Simulation-based inference",
+   "Fisher forecasts"
+  ],
+  "uncertain": []
+ },
+ "2105.11444": {
+  "title": "MillimeterDL: Deep Learning Simulations of the Microwave Sky",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "CMB & SZ"
+  ],
+  "method": [
+   "CNN",
+   "Generative models"
+  ],
+  "uncertain": [
+   "CNN"
+  ]
+ },
+ "2103.12099": {
+  "title": "Detecting the radiative decay of the cosmic neutrino background with line-intensity mapping",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Symbolic regression",
+   "Perturbation theory & analytic models"
+  ],
+  "uncertain": []
+ },
+ "2102.05049": {
+  "title": "Detecting Neutrino Mass by Combining Matter Clustering, Halos, and Voids",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2102.01696": {
+  "title": "Information Content of Higher-Order Galaxy Correlation Functions",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "Fisher forecasts"
+  ],
+  "note": "'large suite of N-body simulations' not named (possibly Quijote)"
+ },
+ "2012.05472": {
+  "title": "Learning the Evolution of the Universe in N-body Simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": [
+   "Other simulations",
+   "CNN"
+  ]
+ },
+ "2012.02200": {
+  "title": "Constraining $M_ν$ with the Bispectrum II: The Total Information Content of the Galaxy Bispectrum",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2012.00240": {
+  "title": "Fast and Accurate Non-Linear Predictions of Universes with Deep Learning",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ],
+  "note": "training simulations not named in abstract"
+ },
+ "2012.00186": {
+  "title": "dm2gal: Mapping Dark Matter to Galaxies with Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ]
+ },
+ "2012.00111": {
+  "title": "Modeling assembly bias with machine learning and symbolic regression",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Symbolic regression",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2011.05992": {
+  "title": "Neural networks as optimal estimators to marginalize over baryonic effects",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "No simulations",
+   "CNN"
+  ],
+  "note": "Uses Gaussian random fields and power spectra, not simulations."
+ },
+ "2010.15843": {
+  "title": "deep21: a Deep Learning Method for 21cm Foreground Removal",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "2010.00619": {
+  "title": "The CAMELS project: Cosmology and Astrophysics with MachinE Learning Simulations",
+  "suite": [
+   "CAMELS"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Generative models",
+   "Emulators & regression ML",
+   "Symbolic regression",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2009.08970": {
+  "title": "CARPool: fast, accurate computation of large-scale structure statistics by pairing costly and cheap cosmological simulations",
+  "suite": [
+   "Quijote",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2008.12265": {
+  "title": "The impact of massive neutrinos on halo assembly bias",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2007.10345": {
+  "title": "The effects of massive neutrinos on the linear point of the correlation function",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2007.10340": {
+  "title": "HInet: Generating neutral hydrogen from dark matter with neural networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "2007.07267": {
+  "title": "Teaching neural networks to generate Fast Sunyaev Zel'dovich Maps",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "CMB & SZ"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "2006.14305": {
+  "title": "Removing Astrophysics in 21 cm maps with Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "CNN",
+   "Other ML"
+  ],
+  "uncertain": []
+ },
+ "2006.06298": {
+  "title": "New Interpretable Statistics for Large Scale Structure Analysis and Generation",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "No ML"
+  ],
+  "note": "WPH moments from ML/data-science community + max-entropy generative model; treated as non-ML statistics"
+ },
+ "2004.09515": {
+  "title": "The Effective Halo Model: Creating a Physical and Accurate Model of the Matter Power Spectrum and Cluster Counts",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [],
+  "note": "'two suites of cosmological simulations' not named"
+ },
+ "2001.11024": {
+  "title": "Using the Marked Power Spectrum to Detect the Signature of Neutrinos in Large-Scale Structure",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "2001.05519": {
+  "title": "Super-resolution emulator of cosmological simulations using deep physical models",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "1912.06621": {
+  "title": "Primordial non-Gaussianity without tails -- how to measure fNL with the bulk of the density PDF",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Fisher forecasts"
+  ]
+ },
+ "1911.11158": {
+  "title": "Fisher for complements: Extracting cosmology and neutrino mass from the counts-in-cells PDF",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1910.07813": {
+  "title": "From Dark Matter to Galaxies with Convolutional Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "1910.04255": {
+  "title": "Learning neutrino effects in Cosmology with Convolutional Neural Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "CNN",
+   "Emulators & regression ML"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ],
+  "note": "Simulations not named (likely Quijote-like N-body); network maps LCDM to massive-neutrino fields."
+ },
+ "1910.03597": {
+  "title": "Baryonic effects on the matter bispectrum",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1909.11107": {
+  "title": "Constraining $M_ν$ with the Bispectrum I: Breaking Parameter Degeneracies",
+  "suite": [
+   "Quijote",
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1909.05273": {
+  "title": "The Quijote simulations",
+  "suite": [
+   "Quijote"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [],
+  "note": "overview paper; applications mostly information-content/Fisher"
+ },
+ "1907.13090": {
+  "title": "Research and Development for HI Intensity Mapping",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1907.12559": {
+  "title": "Packed Ultra-wideband Mapping Array (PUMA): A Radio Telescope for Cosmology and Transients",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Primordial non-Gaussianity",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Fisher forecasts"
+  ]
+ },
+ "1907.06598": {
+  "title": "Weighing neutrinos with the halo environment",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ]
+ },
+ "1904.12846": {
+  "title": "HIGAN: Cosmic Neutral Hydrogen with Generative Adversarial Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Generative models"
+  ],
+  "uncertain": []
+ },
+ "1903.05161": {
+  "title": "Cosmic voids: a novel probe to shed light on our Universe",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Dark matter & modified gravity",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1903.03689": {
+  "title": "Neutrino Mass from Cosmology: Probing Physics Beyond the Standard Model",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Surveys & instruments"
+  ]
+ },
+ "1902.10714": {
+  "title": "Atomic and molecular gas in IllustrisTNG galaxies at low redshift",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1902.05965": {
+  "title": "From Dark Matter to Galaxies with Convolutional Networks",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "CNN"
+  ],
+  "uncertain": []
+ },
+ "1901.06045": {
+  "title": "BE-HaPPY: Bias Emulator for Halo Power Spectrum including massive neutrinos",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ]
+ },
+ "1812.02148": {
+  "title": "Dipole Distortions in the Intergalactic Medium",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1811.12412": {
+  "title": "First detection of scale-dependent linear halo bias in $N$-body simulations with massive neutrinos",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "1811.10609": {
+  "title": "Measuring the EoR Power Spectrum Without Measuring the EoR Power Spectrum",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1811.02743": {
+  "title": "Cosmology with Phase 1 of the Square Kilometre Array; Red Book 2018: Technical specifications and performance forecasts",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1811.00043": {
+  "title": "Cosmological Hydrodynamic Simulations with Suppressed Variance in the Lyman-$α$ Forest Power Spectrum",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Galaxies & baryonic feedback"
+  ]
+ },
+ "1810.09572": {
+  "title": "Inflation and Early Dark Energy with a Stage II Hydrogen Intensity Mapping Experiment",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Primordial non-Gaussianity",
+   "Dark matter & modified gravity",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Dark matter & modified gravity"
+  ]
+ },
+ "1810.02680": {
+  "title": "Fundamental Physics with the Square Kilometre Array",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1808.09968": {
+  "title": "Extreme Spheres: Counts-in-cells for 21cm intensity mapping",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1806.02341": {
+  "title": "Modeling the atomic-to-molecular transition in cosmological simulations of galaxy formation",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "1806.01871": {
+  "title": "Statistical properties of paired fixed fields",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1805.11607": {
+  "title": "The kinematic Sunyaev-Zel'dovich effect of the large-scale structure (II): the effect of modified gravity",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "CMB & SZ"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "1805.00934": {
+  "title": "The HI content of dark matter halos at $z\\approx 0$ from ALFALFA",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1804.09180": {
+  "title": "Ingredients for 21cm intensity mapping",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1803.11539": {
+  "title": "Primordial non-Gaussianities and zero bias tracers of the Large Scale Structure",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Primordial non-Gaussianity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1801.03906": {
+  "title": "Reducing Noise in Cosmological N-body Simulations with Neutrinos",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1709.09066": {
+  "title": "Line-Intensity Mapping: 2017 Status Report",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1709.07893": {
+  "title": "High-redshift post-reionization cosmology with 21cm intensity mapping",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1708.01154": {
+  "title": "The imprint of neutrinos on clustering in redshift-space",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1704.07837": {
+  "title": "Biases from neutrino bias: to worry or not to worry?",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "No simulations",
+   "Fisher forecasts"
+  ]
+ },
+ "1702.00676": {
+  "title": "The kinematic Sunyaev-Zel'dovich effect of the large-scale structure (I): dependence on neutrino mass",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "CMB & SZ"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1611.08606": {
+  "title": "Lensing is Low: Cosmology, Galaxy Formation, or New Physics?",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1611.07527": {
+  "title": "The cross-correlation between 21cm intensity mapping maps and the Lyman-alpha forest in the post-reionization era",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": [
+   "Surveys & instruments",
+   "Perturbation theory & analytic models"
+  ]
+ },
+ "1610.08501": {
+  "title": "Accurate initial conditions in mixed Dark Matter--Baryon simulations",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1610.07624": {
+  "title": "Simulating cosmologies beyond $Λ$CDM with PINOCCHIO",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1610.05768": {
+  "title": "Baryon Acoustic Oscillations reconstruction with pixels",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1609.05157": {
+  "title": "On the spatial distribution of neutral hydrogen in the Universe: bias and shot-noise of the HI Power Spectrum",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1609.00019": {
+  "title": "Baryonic acoustic oscillations from 21cm intensity mapping: the Square Kilometre Array case",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1608.08057": {
+  "title": "Cosmic Degeneracies II: Structure formation in joint simulations of Warm Dark Matter and $f(R)$ gravity",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1605.05283": {
+  "title": "Initial Conditions for Accurate N-Body Simulations of Massive Neutrino Cosmologies",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1512.05356": {
+  "title": "Beyond $Λ$CDM: Problems, solutions, and the road ahead",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1510.04277": {
+  "title": "Neutral hydrogen in galaxy clusters: impact of AGN feedback and implications for intensity mapping",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Galaxies & baryonic feedback",
+   "Neutral hydrogen & 21cm"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1507.05102": {
+  "title": "Weighing neutrinos with cosmic neutral hydrogen",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1506.03088": {
+  "title": "Voids in massive neutrino cosmologies",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1505.07477": {
+  "title": "The effect of massive neutrinos on the BAO peak",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1502.06961": {
+  "title": "Warm dark matter signatures on the 21cm power spectrum: Intensity mapping forecasts for SKA",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1501.04546": {
+  "title": "Small scales structures and neutrino masses",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1501.03989": {
+  "title": "Cosmology with a SKA HI intensity mapping survey",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Primordial non-Gaussianity",
+   "Dark matter & modified gravity",
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Fisher forecasts",
+   "Massive neutrinos",
+   "Dark matter & modified gravity"
+  ]
+ },
+ "1410.7393": {
+  "title": "Cross-correlating 21cm intensity maps with Lyman Break Galaxies in the post-reionization era",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Fisher forecasts"
+  ]
+ },
+ "1410.6813": {
+  "title": "The halo model in a massive neutrino cosmology",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1409.6309": {
+  "title": "Semi-Analytic Galaxy Formation in Massive Neutrino Cosmologies",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1407.1342": {
+  "title": "A coarse grained perturbation theory for the Large Scale Structure, with cosmology and time independence in the UV",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1406.1191": {
+  "title": "VIDE: The Void IDentification and Examination toolkit",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ]
+ },
+ "1405.6713": {
+  "title": "Modeling the neutral hydrogen distribution in the post-reionization Universe: intensity mapping",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Neutral hydrogen & 21cm",
+   "Surveys & instruments"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1403.2185": {
+  "title": "Constraining Warm Dark Matter with high-$z$ supernova lensing",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1311.2588": {
+  "title": "Cosmic Degeneracies I: Joint N-body Simulations of Modified Gravity and Massive Neutrinos",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1311.1514": {
+  "title": "Cosmology with massive neutrinos III: the halo mass function and an application to galaxy clusters",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos",
+   "CMB & SZ"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1311.1212": {
+  "title": "Cosmology with massive neutrinos II: on the universality of the halo mass function and bias",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1311.0866": {
+  "title": "Cosmology with massive neutrinos I: towards a realistic modeling of the relation between matter, haloes and galaxies",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1212.4855": {
+  "title": "Non-linear evolution of the cosmic neutrino background",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1106.2543": {
+  "title": "Neutrino Signatures on the High Transmission Regions of the Lyman-alpha Forest",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Massive neutrinos",
+   "Galaxies & baryonic feedback"
+  ],
+  "method": [
+   "Fisher forecasts",
+   "No ML"
+  ],
+  "uncertain": [
+   "Galaxies & baryonic feedback"
+  ]
+ },
+ "1104.4770": {
+  "title": "Neutrino Halos in Clusters of Galaxies and their Weak Lensing Signature",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Large-scale structure",
+   "Massive neutrinos"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1101.1903": {
+  "title": "Signatures of photon and axion-like particle mixing in the gamma-ray burst jet",
+  "suite": [
+   "No simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "Perturbation theory & analytic models",
+   "No ML"
+  ],
+  "uncertain": []
+ },
+ "1010.3008": {
+  "title": "Cores and Cusps in Warm Dark Matter Halos",
+  "suite": [
+   "Other simulations"
+  ],
+  "data": [
+   "Dark matter & modified gravity"
+  ],
+  "method": [
+   "No ML"
+  ],
+  "uncertain": [
+   "Other simulations"
+  ]
+ }
+}

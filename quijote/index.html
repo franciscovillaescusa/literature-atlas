@@ -395,6 +395,10 @@ footer { font-size: 12px; color: var(--muted); }
 const D = JSON.parse(document.getElementById('atlas-data').textContent);
 const P = D.papers, TOP = D.topics;
 const NAME = D.proj.name, PUBS = D.proj.pubs;   // the project (e.g. CAMELS, Quijote)
+const LIST = D.proj.list_label || `${NAME} publications page`;   // what the paper list is
+// tag axis labels: [label, plural in lower case]; lo(axis) is the label in lower case
+const AXL = Object.assign({ suite: ['Suite', 'suites'], data: ['Data', 'data'], method: ['Method', 'methods'] }, D.proj.axis_labels || {});
+const lo = axis => AXL[axis][0].toLowerCase();
 // ---------- LaTeX in titles and abstracts -> readable Unicode text ----------
 // Math ($...$, \(...\)) gets symbols and sub/superscripts; text outside math loses font commands and
 // grouping braces ({\sc SimBIG} -> SimBIG). The original title is kept for BibTeX (p.tRaw).
@@ -431,8 +435,10 @@ const tex = s => String(s || '').replace(/\$([^$]*)\$|\\\((.*?)\\\)/g, (m, a, b)
   .join('').replace(/---/g, '—').replace(/--/g, '–').replace(/\u0001/g, '{').replace(/\u0002/g, '}').replace(/\s+/g, ' ').trim();
 P.forEach((p, i) => { p.i = i; p.tRaw = p.t; p.t = tex(p.t); p.ab = tex(p.ab); p.citers = []; });
 P.forEach(p => p.r.forEach(j => P[j].citers.push(p.i)));
-// self-citation: the citing and cited paper share at least one author
-const shares = (i, j) => P[i].au.some(a => P[j].au.includes(a));
+// self-citation: the citing and cited paper share at least one author (other than the owner of a person's atlas,
+// D.proj.owner, who is an author of every paper)
+const OWNER = D.proj.owner ? D.authors.indexOf(D.proj.owner) : -1;
+const shares = (i, j) => P[i].au.some(a => a !== OWNER && P[j].au.includes(a));
 P.forEach(p => { p.citersInd = p.citers.filter(i => !shares(i, p.i)); });
 const citeCount = p => S.selfc ? p.citers.length : p.citersInd.length;
 const citeNote = () => S.selfc ? `${P.reduce((s, p) => s + p.r.length, 0)} citation links between ${NAME} papers · drag to rotate`
@@ -473,9 +479,13 @@ function tokScore(p, tk) {   // 3: title/author/ID, 2: abstract/tags/journal, 1:
   for (const w of p.words) if (Math.abs(w.length - tk.length) <= max && lev(tk, w, max) <= max) return 1;
   return 0;
 }
+// co-author pairs; a paper with more than D.proj.coauthor_max authors (a large collaboration) counts only its first
+// coauthor_max authors, plus the owner of a person's atlas (as in build_atlas.network_authors)
 const EM = new Map();
-P.forEach(p => { for (let x = 0; x < p.au.length; x++) for (let y = x + 1; y < p.au.length; y++) {
-  const a = Math.min(p.au[x], p.au[y]), b = Math.max(p.au[x], p.au[y]), key = a * 10000 + b;
+const CO_MAX = D.proj.coauthor_max || Infinity, nBig = P.filter(p => p.au.length > CO_MAX).length;
+const coAu = p => p.au.length <= CO_MAX ? p.au : [...p.au.slice(0, CO_MAX), ...(p.au.indexOf(OWNER) >= CO_MAX ? [OWNER] : [])];
+P.forEach(p => { const au = coAu(p); for (let x = 0; x < au.length; x++) for (let y = x + 1; y < au.length; y++) {
+  const a = Math.min(au[x], au[y]), b = Math.max(au[x], au[y]), key = a * 10000 + b;
   if (!EM.has(key)) EM.set(key, { s: a, t: b, papers: [] }); EM.get(key).papers.push(p.i);
 } });
 const CE = []; P.forEach(p => p.r.forEach(j => CE.push({ s: p.i, t: j, self: shares(p.i, j) })));
@@ -550,7 +560,7 @@ $('cbkey').addEventListener('click', e => {
 function colorKey() {
   const k = $('cbkey'), by = S.colorBy;
   if (by === 'topic' || FLAT[S.view]) { k.hidden = true; return; }
-  const title = { year: 'Year', method: 'Method', suite: 'Suite' }[by];
+  const title = { year: 'Year', method: AXL.method[0], suite: AXL.suite[0] }[by];
   k.classList.toggle('closed', !keyOpen); k.hidden = false;
   if (!keyOpen) { k.innerHTML = `<button class="keytoggle" type="button" aria-expanded="false" title="Show the legend">Legend ▴</button>`; return; }
   const head = `<div class="keyhead"><span>${title}</span><button class="keytoggle" type="button" aria-expanded="true" aria-label="Hide the legend" title="Hide the legend">–</button></div>`;
@@ -1060,9 +1070,9 @@ const VIEWS = ['topics', 'citations', 'coauthors', 'table', 'trends'];   // also
 const VIEWINFO = {
   topics: ['Each dot is a paper, laid out in 3D. Papers with similar abstracts sit close together. Nearer papers look larger and brighter.', (D.nads ? 'Total citations (NASA ADS), on a log scale' : 'Total citations (Semantic Scholar), on a log scale'), 'Topic cluster'],
   citations: [`Each dot is a paper, laid out in 3D. A line means one ${NAME} paper cites another. Select a paper to see arrows pointing to the work it cites. Nearer papers look larger and brighter.`, `Citations from other ${NAME} papers, on a log scale`, 'Topic cluster'],
-  trends: ['Papers per year, split by topic, method or suite. Hover a bar segment for its count; click it to list those papers in the table. The search box and filters apply here too.', 'Bar height: number of papers (a paper with several methods or suites counts once in each)', 'Topic, method or suite: see the chart legend'],
+  trends: [`Papers per year, split by topic, ${lo('method')} or ${lo('suite')}. Hover a bar segment for its count; click it to list those papers in the table. The search box and filters apply here too.`, `Bar height: number of papers (a paper with several ${AXL.method[1]} or ${AXL.suite[1]} counts once in each)`, `Topic, ${lo('method')} or ${lo('suite')}: see the chart legend`],
   table: ['Every paper as a row of a table. Click a column header to sort; click a row (or select it with Tab and press Enter) to see its details. The search box and filters apply here too.', 'Not used', 'Topic shown by the colored dot'],
-  coauthors: [`Each dot is an author, laid out in 3D. A line joins people who wrote a ${NAME} paper together. Darker lines mean a closer collaboration: each shared paper counts more when it has fewer authors, so links from 40-author papers stay faint. Nearer authors look larger and brighter.`, `Number of ${NAME} papers, on a log scale`, 'Author’s most frequent topic'],
+  coauthors: [`Each dot is an author, laid out in 3D. A line joins people who wrote a ${NAME} paper together. Darker lines mean a closer collaboration: each shared paper counts more when it has fewer authors, so links from 40-author papers stay faint.${nBig ? ` Papers with more than ${CO_MAX} authors (large collaborations) count only their first ${CO_MAX} authors${OWNER >= 0 ? ` and ${NAME}` : ''}.` : ''} Nearer authors look larger and brighter.`, `Number of ${NAME} papers, on a log scale`, 'Author’s most frequent topic'],
 };
 const USE_TXT = 'Drag to rotate (or use the arrow keys), scroll or pinch to zoom. Rotation pauses while you hover. Click a dot for details; your selection stays highlighted when you switch views.';
 const USE2 = 'Drag to pan (or use the arrow keys), scroll or pinch to zoom. Click a dot for details; your selection stays highlighted when you switch views.';
@@ -1072,15 +1082,15 @@ const SHORT = {
   citations: `Each dot is a paper; lines show which ${NAME} papers cite which.`,
   coauthors: 'Each dot is an author; lines join people who wrote a paper together.',
   table: 'All papers in a sortable table.',
-  trends: 'Papers per year, by topic, method or suite.',
+  trends: `Papers per year, by topic, ${lo('method')} or ${lo('suite')}.`,
 };
 const USE_TR = 'Hover a segment for its count; click it to see those papers in the table.';
 const USE = { topics: USE_TXT, citations: USE_TXT, coauthors: USE_TXT, trends: USE_TR };
 function overview() {
   let [what, size, color] = VIEWINFO[S.view];
-  if (!FLAT[S.view] && S.colorBy !== 'topic') color = { year: S.view === 'coauthors' ? `Year of first ${NAME} paper` : 'Year of first appearance (light = early, dark = recent)', method: S.view === 'coauthors' ? 'Most frequent method' : 'Method tag (ring: a second method)', suite: S.view === 'coauthors' ? 'Most frequent suite' : 'Suite tag (ring: a second suite)' }[S.colorBy];
+  if (!FLAT[S.view] && S.colorBy !== 'topic') color = { year: S.view === 'coauthors' ? `Year of first ${NAME} paper` : 'Year of first appearance (light = early, dark = recent)', method: S.view === 'coauthors' ? `Most frequent ${lo('method')}` : `${AXL.method[0]} tag (ring: a second ${lo('method')})`, suite: S.view === 'coauthors' ? `Most frequent ${lo('suite')}` : `${AXL.suite[0]} tag (ring: a second ${lo('suite')})` }[S.colorBy];
   if (S.dim === 2) what = what.replace(', laid out in 3D', '').replace(/ Nearer (papers|authors) look larger and brighter\./, '');
-  if (S.view === 'citations' && !S.selfc) size += ', not counting papers that share an author (self-citations hidden)';
+  if (S.view === 'citations' && !S.selfc) size += `, not counting papers that share an author${OWNER >= 0 ? ` other than ${D.proj.owner}` : ''} (self-citations hidden)`;
   let list = '';
   if (FLAT[S.view]) {
     panel.innerHTML = `<details class="howto"${S.helpOpen ? ' open' : ''}><summary><span>${SHORT[S.view]}</span> <span class="more">ⓘ How to read</span></summary><p>${what}</p></details><p>${nShown} of ${P.length} papers shown.</p>`;
@@ -1110,18 +1120,18 @@ function tagBlock(p) {
   if (!p.tg) return '<div><h3>Tags</h3><p>Not tagged yet.</p></div>';
   const row = (label, ax) => p.tg[ax].length ? `<div class="tagrow"><span class="tagax">${label}</span><span class="names">${p.tg[ax].map(t =>
     `<span class="tag${p.tg.u.includes(t) ? ' unsure' : ''}"${p.tg.u.includes(t) ? ' title="Uncertain: not clearly stated in the abstract"' : ''}>${esc(t)}${p.tg.u.includes(t) ? ' ?' : ''}</span>`).join('')}</span></div>` : '';
-  return `<div><h3>Tags</h3>${row('Suite', 's')}${row('Data', 'd')}${row('Method', 'm')}${p.tg.n ? `<p class="tagnote">${esc(p.tg.n)}</p>` : ''}</div>`;
+  return `<div><h3>Tags</h3>${row(AXL.suite[0], 's')}${row(AXL.data[0], 'd')}${row(AXL.method[0], 'm')}${p.tg.n ? `<p class="tagnote">${esc(p.tg.n)}</p>` : ''}</div>`;
 }
 const panelBar = () => `<div class="panelbar"><button class="ghost back" data-back>← Overview</button><button class="ghost" data-copy title="Copy a link to this paper or author">Copy link</button></div>`;
 // pre-filled GitHub issues for corrections and missing papers
 const REPO = D.proj.repo;
 const newIssue = (title, body) => `${safeUrl(REPO)}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 function issueUrl(p) {
-  const tg = p.tg ? `suite: ${p.tg.s.join(', ') || '–'}; data: ${p.tg.d.join(', ') || '–'}; method: ${p.tg.m.join(', ') || '–'}` : 'none';
+  const tg = p.tg ? `${lo('suite')}: ${p.tg.s.join(', ') || '–'}; ${lo('data')}: ${p.tg.d.join(', ') || '–'}; ${lo('method')}: ${p.tg.m.join(', ') || '–'}` : 'none';
   return newIssue(`Correction: ${p.t.slice(0, 80)}`, `**Paper:** ${p.t}\n**ID:** ${p.id}${p.url ? ` (${p.url})` : ''}\n**Current topic:** ${TOP[p.k]}\n**Current tags:** ${tg}\n\n` +
     `What is wrong?\n- [ ] Wrong topic\n- [ ] Wrong or missing tags\n- [ ] Missing or wrong citation links\n- [ ] Wrong date, authors or link\n- [ ] Other\n\nDetails (what should it be?):\n\n`);
 }
-const missingUrl = () => newIssue('Missing paper: ', `**Title:**\n**arXiv ID or DOI:**\n\nNote: the atlas lists the papers on the ${NAME} publications page (${PUBS}). If the paper is missing there too, it may need to be added to that page first.\n`);
+const missingUrl = () => newIssue('Missing paper: ', `**Title:**\n**arXiv ID or DOI:**\n\nNote: ${D.proj.missing_note || `the atlas lists the papers on the ${LIST} (${PUBS}). If the paper is missing there too, it may need to be added to that page first.`}\n`);
 // a paper's authors: the first AU_SHOWN, then a "+N more" button that lists the rest (for that paper)
 const AU_SHOWN = 8; let auAll = -1;
 const authorList = p => { const all = auAll === p.i || p.au.length <= AU_SHOWN + 1, list = all ? p.au : p.au.slice(0, AU_SHOWN);
@@ -1212,7 +1222,7 @@ const COLS = [
   { k: 'y', label: 'Year', v: p => p.d, show: p => p.dq ? p.y + '*' : p.y, cls: 'num' },
   { k: 'k', label: 'Topic', v: p => TOP[p.k], show: p => `<span title="${esc(TOP[p.k])}"><i style="background:var(--t${p.k})"></i>${esc((D.topicsShort || TOP)[p.k])}</span>`, cls: 'sm tp', html: true },
   // methods as small tags; "No ML" (the absence of a method) is left out here (it stays in filters, panel, downloads)
-  { k: 'm', label: 'Methods', v: p => tableMethods(p).join(', '), show: p => tableMethods(p).map(m => `<span class="mtag">${esc(m)}</span>`).join(''), cls: 'sm mt', html: true },
+  { k: 'm', label: AXL.method[1][0].toUpperCase() + AXL.method[1].slice(1), v: p => tableMethods(p).join(', '), show: p => tableMethods(p).map(m => `<span class="mtag">${esc(m)}</span>`).join(''), cls: 'sm mt', html: true },
   { k: 'c', label: 'Citations', v: p => p.cs === 2 ? -1 : p.c, show: p => p.cs === 2 ? '–' : p.c, cls: 'num', num: true },
   { k: 'ci', label: `In ${NAME}`, v: p => citeCount(p), cls: 'num', num: true },
 ];
@@ -1297,7 +1307,8 @@ document.addEventListener('keydown', e => {   // "/" jumps to the search box
     e.preventDefault(); $('q').focus(); $('q').select();
   }
 });
-const dispSum = () => { $('dispsum').textContent = `· ${S.dim}D${S.colorBy !== 'topic' ? ' · ' + { year: 'Year', method: 'Method', suite: 'Suite' }[S.colorBy] : ''}`; };
+['method', 'suite'].forEach(a => { $('colorby').querySelector(`option[value="${a}"]`).textContent = AXL[a][0]; });
+const dispSum = () => { $('dispsum').textContent = `· ${S.dim}D${S.colorBy !== 'topic' ? ' · ' + { year: 'Year', method: AXL.method[0], suite: AXL.suite[0] }[S.colorBy] : ''}`; };
 // ---------- pop-ups (Display menu, Filters panel, Download menu) ----------
 // The button toggles its pop-up (closing the others); a click outside it or Escape closes it. "Outside" uses
 // composedPath() (the path at dispatch time), so a click on a button that a handler has since removed from
@@ -1319,7 +1330,7 @@ const dispMenu = popup('dispbtn', 'dispmenu', '.dispwrap');
 $('colorby').addEventListener('change', e => { S.colorBy = e.target.value; dispSum(); track('atlas_color_by', { by: S.colorBy }); colorKey(); if (!S.sel) overview(); draw(); writeHash(false); });
 const noteText = v => (v === 'topics' ? (S.dim === 2 ? 'Layout: 2D t-SNE of SPECTER2 abstract embeddings · axes have no units'
     : 'Layout: each paper pulled toward its 4 most similar papers (SPECTER2) · axes have no units')
-  : v === 'citations' ? citeNote().replace(' · drag to rotate', '') : `${AU.length} authors · ${EM.size} co-author pairs`)
+  : v === 'citations' ? citeNote().replace(' · drag to rotate', '') : `${nBig ? AU.filter(a => D.co['1'][a.i]).length : AU.length} authors · ${EM.size} co-author pairs${nBig ? ` · ${nBig} paper${nBig > 1 ? 's' : ''} with over ${CO_MAX} authors: first ${CO_MAX} counted` : ''}`)
   + (S.dim === 3 ? ' · drag to rotate' : ' · drag to pan');
 function setDim(d) {
   if (S.dim === d) return;
@@ -1342,7 +1353,8 @@ $('reset').addEventListener('click', () => { S.q = ''; $('q').value = ''; S.y0 =
   renderLegend(); refresh(); });
 // tag filters: one dropdown per axis, with paper counts
 [['suite', 's'], ['data', 'd'], ['method', 'm']].forEach(([axis, ax]) => {
-  const sel = $('f-' + axis), names = { suite: 'All suites', data: 'All data', method: 'All methods' };
+  document.querySelector(`label[for="f-${axis}"]`).textContent = AXL[axis][0];
+  const sel = $('f-' + axis), names = { suite: `All ${AXL.suite[1]}`, data: `All ${AXL.data[1]}`, method: `All ${AXL.method[1]}` };
   const n = t => P.filter(p => p.tg && p.tg[ax].includes(t)).length;
   sel.innerHTML = `<option value="">${names[axis]}</option>` + (D.tagaxes ? D.tagaxes[axis] : []).filter(n)
     .map(t => `<option value="${esc(t)}">${esc(t)} (${n(t)})</option>`).join('');
@@ -1362,7 +1374,7 @@ const nSelf = CE.filter(e => e.self).length;
 $('foot').innerHTML = `Data as of ${esc(D.fetched)} · <button class="linkbtn" id="aboutbtn" type="button">About &amp; data sources</button> · <a href="${esc(missingUrl())}" target="_blank" rel="noopener">Suggest a missing paper</a> · <a href="${esc(safeUrl(REPO))}" target="_blank" rel="noopener">Source on GitHub</a>`;
 $('about-body').innerHTML = `
   <h3>What this is</h3>
-  <p>Every entry on the <a href="${esc(safeUrl(PUBS))}" target="_blank" rel="noopener">${esc(NAME)} publications page</a> (${P.length} papers and theses), shown as a topic map, a citation network, a co-author network and a table. The site is rebuilt automatically twice a month.</p>
+  <p>Every entry on the <a href="${esc(safeUrl(PUBS))}" target="_blank" rel="noopener">${esc(LIST)}</a> (${P.length} papers and theses), shown as a topic map, a citation network, a co-author network and a table. The site is rebuilt automatically twice a month.</p>
   <h3>Data sources</h3>
   <ul>
     <li><b>Titles, abstracts, authors, dates:</b> arXiv; for entries without an arXiv ID, NASA ADS or the publications page itself. Theses without a known date get a year estimated from their position in the list (marked as estimated).</li>
@@ -1375,8 +1387,8 @@ $('about-body').innerHTML = `
     <li><b>Topics:</b> k-means clusters of the embeddings, named by hand. New papers join the nearest topic, or "Unassigned" if they fit none.</li>
     <li><b>Topic map:</b> in 2D, a t-SNE projection of the embeddings; in 3D, each paper pulled toward its 4 most similar papers. Positions are kept fixed as papers are added.</li>
     <li><b>Most similar papers:</b> cosine similarity of the embeddings (word similarity for papers without one).</li>
-    <li><b>Tags</b> (suite, data, method): assigned with AI assistance from each abstract and not all checked by hand; dashed tags marked "?" are uncertain.</li>
-    <li><b>Self-citations:</b> a citation between papers that share at least one author (${nSelf} of ${CE.length} links); they can be hidden in the citation view.</li>
+    <li><b>Tags</b> (${lo('suite')}, ${lo('data')}, ${lo('method')}): assigned with AI assistance from each abstract and not all checked by hand; dashed tags marked "?" are uncertain.</li>
+    <li><b>Self-citations:</b> a citation between papers that share at least one author${OWNER >= 0 ? ` other than ${esc(D.proj.owner)}` : ''} (${nSelf} of ${CE.length} links); they can be hidden in the citation view.</li>
     <li><b>Co-author links:</b> darker for closer collaborations; each shared paper counts 1/(number of authors − 1).</li>
   </ul>
   <p>Corrections are welcome: see the <a href="${esc(safeUrl(REPO))}" target="_blank" rel="noopener">GitHub repository</a>.</p>`;
@@ -1424,7 +1436,7 @@ function renderTrends() {
     bars += `<text x="${x + bw / 2}" y="${yS(acc) - 6}" text-anchor="middle" class="ttot">${tot[yi]}</text>`;
     bars += `<text x="${x + bw / 2}" y="${hh - 8}" text-anchor="middle" class="tax">${y}${y === nowY ? ' (to date)' : ''}</text>`;
   });
-  const opts = ['topic', 'method', 'suite'].map(b => `<button type="button" data-by="${b}" aria-pressed="${TR.by === b}">${b[0].toUpperCase() + b.slice(1)}</button>`).join('');
+  const opts = ['topic', 'method', 'suite'].map(b => `<button type="button" data-by="${b}" aria-pressed="${TR.by === b}">${b === 'topic' ? 'Topic' : AXL[b][0]}</button>`).join('');
   const modes = [['0', 'Counts'], ['1', 'Share']].map(([v, l]) => `<button type="button" data-share="${v}" aria-pressed="${TR.share === (v === '1')}">${l}</button>`).join('');
   // the legend lists the series top to bottom, as they are stacked
   const legend = series.map((s, si) => [s, si]).reverse().map(([s, si]) => { const n = cnt.reduce((a, r) => a + r[si], 0);
@@ -1432,7 +1444,7 @@ function renderTrends() {
   wrap.innerHTML = `<div class="trhead"><h3>Papers per year${TR.share ? ' (share)' : ''}</h3><div class="trbtns"><div class="dimtoggle" role="group" aria-label="Counts or share">${modes}</div><div class="dimtoggle" role="group" aria-label="Split by">${opts}</div></div></div>
     <svg width="${ww}" height="${hh}" viewBox="0 0 ${ww} ${hh}" role="img" aria-label="Stacked bar chart of papers per year by ${TR.by}">${g}${bars}</svg>
     <div class="tlegend">${legend}</div>
-    <p class="tnote">Numbers above the bars count papers${TR.by !== 'topic' ? `; a paper with several ${TR.by === 'method' ? 'methods' : 'suites'} appears in each of its segments` : ''}. ${yrs.includes(nowY) ? nowY + ' is partial (data as of ' + D.fetched + '). ' : ''}Click a segment to list those papers.</p>`;
+    <p class="tnote">Numbers above the bars count papers${TR.by !== 'topic' ? `; a paper with several ${AXL[TR.by][1]} appears in each of its segments` : ''}. ${yrs.includes(nowY) ? nowY + ' is partial (data as of ' + D.fetched + '). ' : ''}Click a segment to list those papers.</p>`;
   wrap._series = series;
 }
 $('trendswrap').addEventListener('click', e => {
@@ -1460,7 +1472,7 @@ function renderActive() {
   const chips = [];
   if (S.y0 !== years[0] || S.y1 !== years[years.length - 1]) chips.push(['years', S.y0 === S.y1 ? `${S.y0}` : `${S.y0}–${S.y1}`]);
   if (onN < shown) chips.push(['topics', onN === 1 ? `Topic: ${(D.topicsShort || TOP)[[...S.on][0]]}` : `Topics: ${onN} of ${shown}`]);
-  [['s', 'Suite'], ['d', 'Data'], ['m', 'Method']].forEach(([ax, l]) => { if (S.tag[ax]) chips.push([ax, `${l}: ${S.tag[ax]}`]); });
+  [['s', AXL.suite[0]], ['d', AXL.data[0]], ['m', AXL.method[0]]].forEach(([ax, l]) => { if (S.tag[ax]) chips.push([ax, `${l}: ${S.tag[ax]}`]); });
   if (S.newOnly) chips.push(['new', 'New papers']);
   $('active').innerHTML = chips.map(([k, l]) => `<button class="achip" data-clear="${k}" title="Remove this filter">${esc(l)} <span aria-hidden="true">×</span></button>`).join('');
   const n = chips.filter(c => c[0] !== 'years').length;

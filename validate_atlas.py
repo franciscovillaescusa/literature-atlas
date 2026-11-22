@@ -186,7 +186,9 @@ def run():
     late = [(i, j) for i, j in links if P[j]["y"] > P[i]["y"] + 1]
     check("cited papers are not from a later year (allowing preprint updates)", len(late) <= 0.02 * len(links),
           f"{len(late)} of {len(links)} links cite a paper >1 year newer")
-    nself = sum(1 for i, j in links if set(P[i]["au"]) & set(P[j]["au"]))
+    own = {AU.index(D["proj"]["owner"])} if D["proj"].get("owner") in AU else set()   # a person's atlas: not counted
+    check("the owner (if set) is an author of every paper", not D["proj"].get("owner") or (own and all(own <= set(p["au"]) for p in P)))
+    nself = sum(1 for i, j in links if (set(P[i]["au"]) & set(P[j]["au"])) - own)
     check("self-citation share recomputed", 0 < nself < len(links), f"{nself} of {len(links)} links share an author")
 
     # ------------------------------------------------------------------ 5. authors and co-author network
@@ -203,9 +205,17 @@ def run():
     pairs = {(min(a, b), max(a, b)) for p in P for a in p["au"] for b in p["au"] if a != b}
     check("co-author pairs recomputed", len(pairs) > len(AU), f"{len(pairs)} pairs")
     co = D["co"]["1"]
-    check("every author has a co-author-map position", all(isinstance(v, list) and len(v) == 3 for v in co))
+    # papers with more than coauthor_max authors add no co-author links; authors with only such papers have no position
+    cmax = CFG.get("coauthor_max")
+    owner_i = AU.index(CFG["owner"]) if CFG.get("owner") in AU else None
+    PC = [{"au": p["au"] if cmax is None or len(p["au"]) <= cmax else p["au"][:cmax] + ([owner_i] if owner_i in p["au"][cmax:] else [])} for p in P]
+    in_net = {a for p in PC for a in p["au"]}
+    check("every author in the co-author network has a position (and only they)",
+          all((isinstance(v, list) and len(v) == 3) == (a in in_net) for a, v in enumerate(co)),
+          f"{len(in_net)} of {len(AU)} authors" + (f"; papers with > {cmax} authors: first {cmax} counted" if cmax else ""))
+    check("coauthor_max reaches the page", D["proj"].get("coauthor_max") == cmax)
     # small isolated teams must be drawn together (their links near the intended length)
-    cnt = Counter((min(a, b), max(a, b)) for p in P for a in p["au"] for b in p["au"] if a < b)
+    cnt = Counter((min(a, b), max(a, b)) for p in PC for a in p["au"] for b in p["au"] if a < b)
     par = list(range(len(AU)))
     def root(x):
         while par[x] != x:
@@ -213,11 +223,11 @@ def run():
         return x
     for a_, b_ in cnt:
         par[root(a_)] = root(b_)
-    size = Counter(root(i) for i in range(len(AU)))
+    size = Counter(root(i) for i in in_net)
     for key in ("co", "co2d"):
-        X = np.array(D[key]["1"], float)
+        X = np.array([v or [np.nan] * (3 if key == "co" else 2) for v in D[key]["1"]], float)
         st = [np.linalg.norm(X[a_] - X[b_]) / (60 / math.sqrt(c)) for (a_, b_), c in cnt.items() if size[root(a_)] <= 5]
-        check(f"small co-author teams drawn together ({key})", max(st) <= 2.0, f"longest link {max(st):.1f}x its intended length")
+        check(f"small co-author teams drawn together ({key})", max(st, default=0) <= 2.0, f"longest link {max(st, default=0):.1f}x its intended length")
 
     # ------------------------------------------------------------------ 6. topics, overrides, tags
     check("every paper has a valid topic", all(0 <= p["k"] < len(TOP) for p in P))
@@ -278,7 +288,7 @@ def run():
 
     # ------------------------------------------------------------------ 8. stored layouts
     for key, n_exp in (("topics2d", N), ("topics3d_graph", N), ("citations", N), ("citations2d", N),
-                       ("coauthors1", len(AU)), ("coauthors1_2d", len(AU))):
+                       ("coauthors1", len(in_net)), ("coauthors1_2d", len(in_net))):
         v = POS.get(key, {})
         finite = all(all(math.isfinite(x) for x in xy) for xy in v.values())
         check(f"layout '{key}' complete and finite", len(v) == n_exp and finite, f"{len(v)} of {n_exp}")
