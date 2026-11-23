@@ -24,14 +24,12 @@
    "CNN",
    "Simulation-based inference"
   ],
-  "uncertain": [
-   "Other simulations"
-  ]
+  "uncertain": []
  },
  "2610.23825": {
   "title": "ENFR: Evidence Networks with Flow-Matched References for Amortized Simulation-Based Model Inference",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -41,11 +39,8 @@
    "Normalizing flows"
   ],
   "uncertain": [
-   "Other simulations",
-   "Large-scale structure",
    "Normalizing flows"
-  ],
-  "note": "generic SBI method paper; applications/simulations not specified"
+  ]
  },
  "2610.06710": {
   "title": "AI-assisted super-resolution cosmological simulations V: Cosmology-aware super-resolution",
@@ -268,8 +263,7 @@
  "2512.10222": {
   "title": "Galaxy Phase-Space and Field-Level Cosmology: The Strength of Semi-Analytic Models",
   "suite": [
-   "CAMELS",
-   "Other simulations"
+   "CAMELS"
   ],
   "data": [
    "Large-scale structure",
@@ -279,10 +273,7 @@
    "Graph neural networks",
    "Simulation-based inference"
   ],
-  "uncertain": [
-   "CAMELS"
-  ],
-  "note": "SAMs+hydro in 25 Mpc/h boxes are CAMELS(-SAM) but CAMELS not named"
+  "uncertain": []
  },
  "2512.03132": {
   "title": "The DREAMS Project: Disentangling the Impact of Halo-to-Halo Variance and Baryonic Feedback on Milky Way Dark Matter Density Profiles",
@@ -439,7 +430,7 @@
  "2509.01881": {
   "title": "One latent to fit them all: a unified representation of baryonic feedback on matter distribution",
   "suite": [
-   "Other simulations"
+   "CAMELS"
   ],
   "data": [
    "Large-scale structure",
@@ -449,10 +440,8 @@
    "Other ML"
   ],
   "uncertain": [
-   "Other simulations",
    "Other ML"
-  ],
-  "note": "5,072 sims from 4 galaxy-formation models, very likely CAMELS but not named"
+  ]
  },
  "2508.21152": {
   "title": "How does feedback affect the star formation histories of galaxies?",
@@ -526,7 +515,8 @@
  "2507.03707": {
   "title": "CosmoBench: A Multiscale, Multiview, Multitask Cosmology Benchmark for Geometric Deep Learning",
   "suite": [
-   "Other simulations"
+   "CAMELS",
+   "Quijote"
   ],
   "data": [
    "Large-scale structure",
@@ -538,10 +528,8 @@
    "Emulators & regression ML"
   ],
   "uncertain": [
-   "Other simulations",
    "AI for science"
-  ],
-  "note": "Simulations not named in abstract (likely Quijote/CAMELS-SAM); tagged Other simulations per naming rule."
+  ]
  },
  "2505.23904": {
   "title": "Cosmology with Topological Deep Learning",
@@ -585,9 +573,7 @@
    "CNN",
    "Other ML"
   ],
-  "uncertain": [
-   "CAMELS"
-  ]
+  "uncertain": []
  },
  "2504.06919": {
   "title": "Correcting for interloper contamination in the power spectrum with neural networks",
@@ -680,7 +666,7 @@
  "2502.13242": {
   "title": "Learning the Universe: $3\\ h^{-1}{\\rm Gpc}$ Tests of a Field Level $N$-body Simulation Emulator",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -691,8 +677,7 @@
   ],
   "uncertain": [
    "CNN"
-  ],
-  "note": "Learning the Universe field-level emulator; N-body suite not named (likely Quijote)"
+  ]
  },
  "2502.13239": {
   "title": "Towards Robustness Across Cosmological Simulation Models TNG, SIMBA, ASTRID, and EAGLE",
@@ -831,7 +816,7 @@
  "2409.09124": {
   "title": "CHARM: Creating Halos with Auto-Regressive Multi-stage networks",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -841,10 +826,7 @@
    "Normalizing flows",
    "Generative models"
   ],
-  "uncertain": [
-   "Other simulations"
-  ],
-  "note": "Simulations not named (likely Quijote); flows used generatively."
+  "uncertain": []
  },
  "2409.02980": {
   "title": "How DREAMS are made: Emulating Satellite Galaxy and Subhalo Populations with Diffusion Models and Point Clouds",
@@ -1086,7 +1068,8 @@
  "2311.10088": {
   "title": "Taming assembly bias for primordial non-Gaussianity",
   "suite": [
-   "Other simulations"
+   "CAMELS",
+   "Quijote"
   ],
   "data": [
    "Large-scale structure",
@@ -1098,10 +1081,8 @@
    "No ML"
   ],
   "uncertain": [
-   "Other simulations",
    "Fisher forecasts"
-  ],
-  "note": "hydro simulations not named in abstract"
+  ]
  },
  "2311.01588": {
   "title": "Domain Adaptive Graph Neural Networks for Constraining Cosmological Parameters Across Multiple Data Sets",
@@ -1194,7 +1175,7 @@
  "2309.05850": {
   "title": "Predicting Interloper Fraction with Graph Neural Networks",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -1203,10 +1184,7 @@
    "Graph neural networks",
    "Simulation-based inference"
   ],
-  "uncertain": [
-   "Other simulations"
-  ],
-  "note": "Halo catalogs from unnamed simulations (likely Quijote)."
+  "uncertain": []
  },
  "2308.13648": {
   "title": "Emulating Radiative Transfer with Artificial Neural Networks",
@@ -2019,7 +1997,7 @@
  "2102.01696": {
   "title": "Information Content of Higher-Order Galaxy Correlation Functions",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -2030,15 +2008,13 @@
    "No ML"
   ],
   "uncertain": [
-   "Other simulations",
    "Fisher forecasts"
-  ],
-  "note": "'large suite of N-body simulations' not named (possibly Quijote)"
+  ]
  },
  "2012.05472": {
   "title": "Learning the Evolution of the Universe in N-body Simulations",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -2047,7 +2023,6 @@
    "CNN"
   ],
   "uncertain": [
-   "Other simulations",
    "CNN"
   ]
  },
@@ -2069,7 +2044,7 @@
  "2012.00240": {
   "title": "Fast and Accurate Non-Linear Predictions of Universes with Deep Learning",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure"
@@ -2078,10 +2053,7 @@
    "CNN",
    "Emulators & regression ML"
   ],
-  "uncertain": [
-   "Other simulations"
-  ],
-  "note": "training simulations not named in abstract"
+  "uncertain": []
  },
  "2012.00186": {
   "title": "dm2gal: Mapping Dark Matter to Galaxies with Neural Networks",
@@ -2095,9 +2067,7 @@
   "method": [
    "CNN"
   ],
-  "uncertain": [
-   "Other simulations"
-  ]
+  "uncertain": []
  },
  "2012.00111": {
   "title": "Modeling assembly bias with machine learning and symbolic regression",
@@ -2357,7 +2327,7 @@
  "1910.04255": {
   "title": "Learning neutrino effects in Cosmology with Convolutional Neural Networks",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure",
@@ -2367,10 +2337,7 @@
    "CNN",
    "Emulators & regression ML"
   ],
-  "uncertain": [
-   "Other simulations"
-  ],
-  "note": "Simulations not named (likely Quijote-like N-body); network maps LCDM to massive-neutrino fields."
+  "uncertain": []
  },
  "1910.03597": {
   "title": "Baryonic effects on the matter bispectrum",
@@ -2454,7 +2421,7 @@
  "1907.06598": {
   "title": "Weighing neutrinos with the halo environment",
   "suite": [
-   "Other simulations"
+   "Quijote"
   ],
   "data": [
    "Large-scale structure",
@@ -2463,9 +2430,7 @@
   "method": [
    "No ML"
   ],
-  "uncertain": [
-   "Other simulations"
-  ]
+  "uncertain": []
  },
  "1904.12846": {
   "title": "HIGAN: Cosmic Neutral Hydrogen with Generative Adversarial Networks",
@@ -3197,9 +3162,7 @@
   "method": [
    "No ML"
   ],
-  "uncertain": [
-   "Other simulations"
-  ]
+  "uncertain": []
  },
  "1405.6713": {
   "title": "Modeling the neutral hydrogen distribution in the post-reionization Universe: intensity mapping",
@@ -3351,7 +3314,7 @@
  "1010.3008": {
   "title": "Cores and Cusps in Warm Dark Matter Halos",
   "suite": [
-   "Other simulations"
+   "No simulations"
   ],
   "data": [
    "Dark matter & modified gravity"
@@ -3359,8 +3322,6 @@
   "method": [
    "No ML"
   ],
-  "uncertain": [
-   "Other simulations"
-  ]
+  "uncertain": []
  }
 }
